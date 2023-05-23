@@ -106,7 +106,36 @@ void SpMV_dispatch(int sizeExponent, double nonzeroDensity,
   } // runSpecialized
   
   if(runSparseRAJA) {
+    DenseView1 y(new double[dimSize], dimSize);
     
+    using POLICY = KernelPolicy<
+      statement::For<0,loop_exec,
+        statement::For<1,loop_exec,
+          statement::Lambda<0>
+        >
+      >
+    >;
+
+    auto seg1 = RangeSegment(0,dimSize);
+    auto seg2 = RangeSegment(0,dimSize);
+    auto dense_segs = make_tuple(seg1, seg2);
+
+    auto lam = [&](auto i, auto j) {
+      y(i) += refData(i,j) * x(j);
+    }
+    
+    auto knl = make_sparse_kernel<POLICY>(dense_segs, refData, lam);
+  
+    auto start = clock();
+    for(int i = 0; i < numReps; i++) {
+      knl(); 
+    }
+    auto stop = clock();
+    auto elapsed = elapsed_time(start, stop);
+    std::cout << "SpMV,SparseRAJA," << sizeExponent << "," << nonzeroDensity << "," << elapsed << "\n";
+    
+    
+    delete[] y.get_data();
   } // runSparseRAJA
   
   delete[] x.get_data();
