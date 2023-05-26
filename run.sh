@@ -15,7 +15,7 @@ BUILD=0
 while test $# -gt 0
 do
   case "$1" in
-    -o) echo "output file $2;
+    -o) echo "output file $2";
       OUTFILE=$2
       shift
       ;;
@@ -75,7 +75,7 @@ if [[ $BUILD -ne 0 ]] ; then
   rm -rf build
   mkdir build
   cd build
-  echo "Configuring..."
+  echo Configuring...
   cmake .. -DENABLE_OPENMP=On -DBLT_CXX_STD=c++17
   if [ $? -ne 0 ] ; then
     echo "Configure failed."
@@ -84,7 +84,7 @@ if [[ $BUILD -ne 0 ]] ; then
   echo "Building..."
   make -j10
   if [ $? -ne 0 ] ; then
-    echo "Build failed."
+    echo Build failed.
     exit;
   fi
   cd ..
@@ -96,10 +96,9 @@ for size in $SIZES; do
   for density in $DENSITIES; do
     cmd="./build/bin/sparseEval.exe $DENSE $SPECIALIZED $SPARSERAJA $SPMV $GAUSEI $INCHOLFACT $size $density"
     for run in $(seq $NUMRUNS); do
-      if [[ $DRY -ne 0 ]] ; then
         echo $cmd
-      else
-        $cmd > $OUTFILE
+      if [[ $DRY -eq 0 ]] ; then
+        $cmd >> $OUTFILE
       fi
     done
   done

@@ -1,17 +1,10 @@
 #include <string>
 #include <iostream>
 
-void SpMV_dispatch(size_t dimSize, double nonzeroDensity, int runDense, int runSpecialized, int runSparseRAJA) {
-  
-}
 
-void GauSei_dispatch(size_t dimSize, double nonzeroDensity, int runDense, int runSpecialized, int runSparseRAJA) {
-  
-}
+void SpMV_dispatch(int sizeExponent, double nonzeroDensity, 
+                   int runDense, int runSpecialized, int runSparseRAJA);
 
-void InCholFact_dispatch(size_t dimSize, double nonzeroDensity, int runDense, int runSpecialized, int runSparseRAJA) {
-  
-}
 
 void usage() {
   std::cerr << "Usage: ./sparseEval.exe RunDense RunSpecialized RunSparseRAJA RunSpMV RunGauSei RunInCholFact SizeExponent NonzeroDensity\n"; 
@@ -41,22 +34,22 @@ int main(int argc, char * argv[]) {
   size_t dimSize = 1 << sizeExponent;
   
   double nonzeroDensity = std::stod(argv[8]);
-  if (nonzeroDensity <= 0 || nonZeroDensity >= 1) {
+  if (nonzeroDensity <= 0 || nonzeroDensity >= 1) {
     std::cerr << "Error: Nonzero density should be between 0 and 1.\n";
     usage();
     return 3;
   }
   
   if(runSpMV) {
-    SpMV_dispatch(dimSize, nonzeroDensity, runDense, runSpecialized, runSparseRAJA);
+    SpMV_dispatch(sizeExponent, nonzeroDensity, runDense, runSpecialized, runSparseRAJA);
   }
   
   if(runGauSei) {
-    GauSei_dispatch(dimSize, nonzeroDensity, runDense, runSpecialized, runSparseRAJA);
+    //GauSei_dispatch(dimSize, nonzeroDensity, runDense, runSpecialized, runSparseRAJA);
   }
   
   if(runInCholFact) {
-    InCholFact_dispatch(dimSize, nonzeroDensity, runDense, runSpecialized, runSparseRAJA);
+    //InCholFact_dispatch(dimSize, nonzeroDensity, runDense, runSpecialized, runSparseRAJA);
   }
 
   return 0; 

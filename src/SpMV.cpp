@@ -5,16 +5,16 @@ using namespace RAJA;
 using DenseView1 = View<double, Layout<1>>;
 using DenseView2 = View<double, Layout<2>>;
 
-auto clock() {
+std::chrono::time_point<std::chrono::high_resolution_clock> now() {
   return std::chrono::high_resolution_clock::now(); 
 }
-auto elapsed_time(auto start, auto stop) {
+auto elapsed_time(std::chrono::time_point<std::chrono::high_resolution_clock> start, std::chrono::time_point<std::chrono::high_resolution_clock> stop) {
   return std::chrono::duration_cast<std::chrono::nanoseconds>(stop-start).count();
 }
 void SpMV_dispatch(int sizeExponent, double nonzeroDensity, 
                    int runDense, int runSpecialized, int runSparseRAJA) {
   size_t dimSize = 1 << sizeExponent;
-  int numReps = 1;
+  int numReps = 10;
   
   auto refData = make_random_sparse_view2<double>(dimSize, nonzeroDensity);
   DenseView1 x(new double[dimSize], dimSize);
@@ -53,11 +53,11 @@ void SpMV_dispatch(int sizeExponent, double nonzeroDensity,
 
     auto knl = make_kernel<POLICY>(segs, lam);
     
-    auto start = clock();
+    std::chrono::time_point<std::chrono::high_resolution_clock> start = now();
     for(int i = 0; i < numReps; i++) {
       knl();
     }
-    auto stop = clock();
+    auto stop = now();
     
     auto elapsed = elapsed_time(start, stop);
     
@@ -76,12 +76,12 @@ void SpMV_dispatch(int sizeExponent, double nonzeroDensity,
     //set and copy data
     std::memset(y.get_data(), 0, dimSize);
     for(int i = 0; i < numNonZeros; i++) {
-      A_rows(i) = refData.dims(0)[i];
-      A_cols(i) = refData.dims(1)[i];
-      A_vals(i) = refData.val[i];
+      A_rows(i) = refData.dim(0)[i];
+      A_cols(i) = refData.dim(1)[i];
+      A_vals(i) = refData.val(i);
     }
     
-    auto seg = RangeSegment(0,NumNonZeros);
+    auto seg = RangeSegment(0,numNonZeros);
 
     auto lam = [&](auto idx) {
       auto i = A_rows(idx);
@@ -91,11 +91,11 @@ void SpMV_dispatch(int sizeExponent, double nonzeroDensity,
 
     auto knl = make_forall<loop_exec>(seg, lam);
 
-    auto start = clock();
+    auto start = now();
     for(int i = 0; i < numReps; i++) {
       knl(); 
     }
-    auto stop = clock();
+    auto stop = now();
     auto elapsed = elapsed_time(start, stop);
     std::cout << "SpMV,Specialized," << sizeExponent << "," << nonzeroDensity << "," << elapsed << "\n";
     
@@ -122,15 +122,15 @@ void SpMV_dispatch(int sizeExponent, double nonzeroDensity,
 
     auto lam = [&](auto i, auto j) {
       y(i) += refData(i,j) * x(j);
-    }
+    };
     
     auto knl = make_sparse_kernel<POLICY>(dense_segs, refData, lam);
   
-    auto start = clock();
+    auto start = now();
     for(int i = 0; i < numReps; i++) {
       knl(); 
     }
-    auto stop = clock();
+    auto stop = now();
     auto elapsed = elapsed_time(start, stop);
     std::cout << "SpMV,SparseRAJA," << sizeExponent << "," << nonzeroDensity << "," << elapsed << "\n";
     
