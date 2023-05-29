@@ -2,12 +2,12 @@
 #include <iostream>
 
 
-void SpMV_dispatch(int sizeExponent, double nonzeroDensity, 
+void SpMV_dispatch(int dimSize, double nonzeroDensity, 
                    int runDense, int runSpecialized, int runSparseRAJA);
 
 
 void usage() {
-  std::cerr << "Usage: ./sparseEval.exe RunDense RunSpecialized RunSparseRAJA RunSpMV RunGauSei RunInCholFact SizeExponent NonzeroDensity\n"; 
+  std::cerr << "Usage: ./sparseEval.exe RunDense RunSpecialized RunSparseRAJA RunSpMV RunGauSei RunInCholFact DimSize NonzeroDensity\n"; 
 }
 int main(int argc, char * argv[]) {
   
@@ -25,13 +25,12 @@ int main(int argc, char * argv[]) {
   int runGauSei = std::atoi(argv[5]);
   int runInCholFact = std::atoi(argv[6]);
   
-  int sizeExponent = std::atoi(argv[7]);
-  if (sizeExponent < 1 || sizeExponent > 20) {
-    std::cerr << "Error: Size exponent should be between 1 and 20.\n";
+  int dimSize = std::atoi(argv[7]);
+  if (dimSize < 1 || dimSize > 2000) {
+    std::cerr << "Error: dimSize should be between 1 and 20.\n";
     usage();
     return 2;
   }
-  size_t dimSize = 1 << sizeExponent;
   
   double nonzeroDensity = std::stod(argv[8]);
   if (nonzeroDensity <= 0 || nonzeroDensity >= 1) {
@@ -41,7 +40,7 @@ int main(int argc, char * argv[]) {
   }
   
   if(runSpMV) {
-    SpMV_dispatch(sizeExponent, nonzeroDensity, runDense, runSpecialized, runSparseRAJA);
+    SpMV_dispatch(dimSize, nonzeroDensity, runDense, runSpecialized, runSparseRAJA);
   }
   
   if(runGauSei) {

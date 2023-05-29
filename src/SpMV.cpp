@@ -11,9 +11,8 @@ std::chrono::time_point<std::chrono::high_resolution_clock> now() {
 auto elapsed_time(std::chrono::time_point<std::chrono::high_resolution_clock> start, std::chrono::time_point<std::chrono::high_resolution_clock> stop) {
   return std::chrono::duration_cast<std::chrono::nanoseconds>(stop-start).count();
 }
-void SpMV_dispatch(int sizeExponent, double nonzeroDensity, 
+void SpMV_dispatch(int dimSize, double nonzeroDensity, 
                    int runDense, int runSpecialized, int runSparseRAJA) {
-  size_t dimSize = 1 << sizeExponent;
   int numReps = 10;
   
   auto refData = make_random_sparse_view2<double>(dimSize, nonzeroDensity);
@@ -61,7 +60,7 @@ void SpMV_dispatch(int sizeExponent, double nonzeroDensity,
     
     auto elapsed = elapsed_time(start, stop);
     
-    std::cout << "SpMV,Dense," << sizeExponent << "," << nonzeroDensity << "," << elapsed << "\n";
+    std::cout << "SpMV,Dense," << dimSize << "," << nonzeroDensity << "," << elapsed << "\n";
     delete[] A.get_data();
     delete[] y.get_data();
   } // runDense
@@ -97,7 +96,7 @@ void SpMV_dispatch(int sizeExponent, double nonzeroDensity,
     }
     auto stop = now();
     auto elapsed = elapsed_time(start, stop);
-    std::cout << "SpMV,Specialized," << sizeExponent << "," << nonzeroDensity << "," << elapsed << "\n";
+    std::cout << "SpMV,Specialized," << dimSize << "," << nonzeroDensity << "," << elapsed << "\n";
     
     delete[] A_cols.get_data();
     delete[] A_rows.get_data();
@@ -132,7 +131,7 @@ void SpMV_dispatch(int sizeExponent, double nonzeroDensity,
     }
     auto stop = now();
     auto elapsed = elapsed_time(start, stop);
-    std::cout << "SpMV,SparseRAJA," << sizeExponent << "," << nonzeroDensity << "," << elapsed << "\n";
+    std::cout << "SpMV,SparseRAJA," << dimSize << "," << nonzeroDensity << "," << elapsed << "\n";
     
     
     delete[] y.get_data();

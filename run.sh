@@ -19,7 +19,7 @@ do
       OUTFILE=$2
       shift
       ;;
-    -s) echo "Running with dimension length 2^$2";
+    -s) echo "Running with dimension length $2";
       SIZES="$SIZES $2"
       shift
       ;;
