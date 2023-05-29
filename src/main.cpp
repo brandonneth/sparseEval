@@ -33,7 +33,7 @@ int main(int argc, char * argv[]) {
   }
   
   double nonzeroDensity = std::stod(argv[8]);
-  if (nonzeroDensity <= 0 || nonzeroDensity >= 1) {
+  if (nonzeroDensity <= 0 || nonzeroDensity > 1) {
     std::cerr << "Error: Nonzero density should be between 0 and 1.\n";
     usage();
     return 3;
