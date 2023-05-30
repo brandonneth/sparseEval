@@ -76,7 +76,7 @@ if [[ $BUILD -ne 0 ]] ; then
   mkdir build
   cd build
   echo Configuring...
-  cmake .. -DENABLE_OPENMP=On -DBLT_CXX_STD=c++17
+  cmake .. -DENABLE_OPENMP=On -DBLT_CXX_STD=c++17 -DCMAKE_BUILD_TYPE=RELWITHDEBINFO -DCMAKE_INSTALL_PREFIX=$HOME/libs
   if [ $? -ne 0 ] ; then
     echo "Configure failed."
     exit;
@@ -98,11 +98,10 @@ for size in $SIZES; do
     for run in $(seq $NUMRUNS); do
         echo $cmd
       if [[ $DRY -eq 0 ]] ; then
-        results=$($cmd)
+	$cmd >> $OUTFILE
         if [ $? -ne 0 ] ; then
           echo Run failed.
-	else
-	  echo $results >> $OUTFILE
+	  exit
 	fi
       fi
     done
