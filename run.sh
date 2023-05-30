@@ -12,6 +12,7 @@ DENSE=0
 SPECIALIZED=0
 SPARSERAJA=0
 BUILD=0
+CONFIGURE=0
 while test $# -gt 0
 do
   case "$1" in
@@ -58,6 +59,10 @@ do
     --build) echo "Building before running";
       BUILD=1
       ;;
+     --configure) echo "Configuring before running";
+      CONFIGURE=1
+      ;;
+
     *) echo "unknown argument: $1"; exit;
     
   esac
@@ -70,8 +75,8 @@ if [[ $APPEND -ne 1 ]] ; then
   echo "Benchmark, Variant, Size, Density, Time" > $OUTFILE
 fi
 
-if [[ $BUILD -ne 0 ]] ; then
-  echo "Prepping build directory..."
+if [[ $CONFIGURE -ne 0 ]] ; then
+echo "Prepping build directory..."
   rm -rf build
   mkdir build
   cd build
@@ -81,7 +86,12 @@ if [[ $BUILD -ne 0 ]] ; then
     echo "Configure failed."
     exit;
   fi
-  echo "Building..."
+  cd ..
+fi
+
+if [[ $BUILD -ne 0 ]] ; then
+    echo "Building..."
+  cd build
   make -j10
   if [ $? -ne 0 ] ; then
     echo Build failed.
