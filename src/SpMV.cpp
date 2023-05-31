@@ -13,7 +13,7 @@ auto elapsed_time(std::chrono::time_point<std::chrono::high_resolution_clock> st
 }
 void SpMV_dispatch(int dimSize, double nonzeroDensity, 
                    int runDense, int runSpecialized, int runSparseRAJA) {
-  int numReps = 10;
+  int numReps = 1000;
   
   auto refData = make_random_sparse_view2<double>(dimSize, nonzeroDensity);
   DenseView1 x(new double[dimSize], dimSize);
@@ -105,6 +105,7 @@ void SpMV_dispatch(int dimSize, double nonzeroDensity,
   } // runSpecialized
   
   if(runSparseRAJA) {
+    refData.reset_counters();
     DenseView1 y(new double[dimSize], dimSize);
     
     using POLICY = KernelPolicy<
@@ -119,6 +120,7 @@ void SpMV_dispatch(int dimSize, double nonzeroDensity,
     auto seg2 = RangeSegment(0,dimSize);
     auto dense_segs = make_tuple(seg1, seg2);
 
+     
     auto lam = [&](auto i, auto j) {
       y(i) += refData(i,j) * x(j);
     };
@@ -133,7 +135,7 @@ void SpMV_dispatch(int dimSize, double nonzeroDensity,
     auto elapsed = elapsed_time(start, stop);
     std::cout << "SpMV,SparseRAJA," << dimSize << "," << nonzeroDensity << "," << elapsed << "\n";
     
-    
+    std::cerr << "Hit rate: " << refData.get_hit_rate() << "\n"; 
     delete[] y.get_data();
   } // runSparseRAJA
   

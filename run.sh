@@ -13,6 +13,7 @@ SPECIALIZED=0
 SPARSERAJA=0
 BUILD=0
 CONFIGURE=0
+PROFILE=0
 while test $# -gt 0
 do
   case "$1" in
@@ -62,6 +63,10 @@ do
      --configure) echo "Configuring before running";
       CONFIGURE=1
       ;;
+     --profile) echo "Profiling with hpctoolkit";
+      PROFILE=1
+	module load hpctoolkit
+      ;;
 
     *) echo "unknown argument: $1"; exit;
     
@@ -100,11 +105,19 @@ if [[ $BUILD -ne 0 ]] ; then
   cd ..
 fi
 
+	
 
 
 for size in $SIZES; do
   for density in $DENSITIES; do
     cmd="./build/bin/sparseEval.exe $DENSE $SPECIALIZED $SPARSERAJA $SPMV $GAUSEI $INCHOLFACT $size $density"
+    if [[ $PROFILE -eq 1 ]] ; then
+	cmd="hpcrun -o $OUTFILE $cmd"
+    	$cmd
+	hpcstruct ./build/bin/sparseEval.exe -Isrc/+
+	hpcprof $OUTFILE -SsparseEval.exe.hpcstruct -o $OUTFILE-database
+	exit
+    fi
     for run in $(seq $NUMRUNS); do
         echo $cmd
       if [[ $DRY -eq 0 ]] ; then
