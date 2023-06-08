@@ -4,7 +4,6 @@
 using namespace RAJA;
 using DenseView1 = View<double, Layout<1>>;
 using DenseView2 = View<double, Layout<2>>;
-
 std::chrono::time_point<std::chrono::high_resolution_clock> now() {
   return std::chrono::high_resolution_clock::now(); 
 }
