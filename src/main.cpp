@@ -251,12 +251,12 @@ void GauSei_dispatch(int dimSize, double nonzeroDensity,
       } 
     };
 
-    auto knl = make_forall<POLICY>(seg, lam);
+    auto knl = make_forall<loop_exec>(seg, lam);
 
     auto start = now();
     for(int i = 0; i < numReps; i++) {
       knl();
-      prev_diagonal = refData(prev_i, prev_i);
+      auto prev_diagonal = refData(prev_i, prev_i);
       x(prev_i) = (b(prev_i) - temp) / prev_diagonal;
     }
     auto stop = now();
@@ -273,7 +273,7 @@ void GauSei_dispatch(int dimSize, double nonzeroDensity,
   if (runSparseRAJA) {
     refData.reset_counters();
     DenseView1 x(new double[dimSize], dimSize);
-
+    double temp = 0.0;
     using POLICY = KernelPolicy<
       statement::For<0,loop_exec,
         statement::Lambda<0,Segs<0>>,
@@ -302,7 +302,7 @@ void GauSei_dispatch(int dimSize, double nonzeroDensity,
       x(i) = (b(i) - temp) / refData(i,i);
     };
 
-    auto knl = make_sparse_kernel<POLICY, 2>(segs, A, lam1, lam2, lam3);
+    auto knl = make_sparse_kernel_sym<POLICY, 1>(make_tuple(0,1), dense_segs, refData, lam1, lam2, lam3);
 
 
     auto start = now();
@@ -343,7 +343,7 @@ int main(int argc, char * argv[]) {
   
   int dimSize = std::atoi(argv[7]);
   if (dimSize < 1 || dimSize > 2000) {
-    std::cerr << "Error: dimSize should be between 1 and 20.\n";
+    std::cerr << "Error: dimSize should be between 1 and 2000.\n";
     usage();
     return 2;
   }
