@@ -8,20 +8,23 @@ if len(sys.argv) != 2:
 
 results = pd.read_csv(sys.argv[1])
 
+
 print("Raw data:")
 print(results)
-results = results.rename(columns=lambda x : x.strip())
-results = results.applymap(lambda x: x.strip() if isinstance(x, str) else x)
-variant_order = ['Dense', 'Specialized', 'SparseRAJA']
-results['Variant'] = pd.Categorical(results['Variant'], categories=variant_order)
 
-results = results.groupby(['Benchmark', 'Size', 'Variant', 'Density']).mean()
-print("grouped and meaned:")
-print(results)
+def clean(results):
+  results = results.rename(columns=lambda x : x.strip())
+  results = results.applymap(lambda x: x.strip() if isinstance(x, str) else x)
+  variant_order = ['Dense', 'Specialized', 'SparseRAJA']
+  results['Variant'] = pd.Categorical(results['Variant'], categories=variant_order)
+  results = results.groupby(['Benchmark', 'Size', 'Variant', 'Density']).mean()
+  results = results.reset_index()
+  results = results[results['Time'] == results['Time']]  # remove nans
+  results['Time'] = results['Time'].astype(float) / 1e9
+  results['Dim Length'] = results['Size']
+  return results
+results = clean(results)
 
-results = results.reset_index()
-print("indices reset:")
-print(results)
 
 def charts():
   for benchmark in ['SpMV']:#, 'GauSei', 'InCholFact']:
@@ -47,7 +50,6 @@ def charts():
 
 def tables(benchmark):
   data = results[results['Benchmark'] == benchmark]
-  data['Time'] = data['Time'] / 10000
   #data['Time'] = data['Time'].astype(int)
   #data['Size'] = data['Size'].astype(str)
   #data['Density'] = data['Density'].astype(str)
@@ -62,8 +64,7 @@ def tables(benchmark):
 
 def lines(benchmark):
   data = results[results['Benchmark'] == benchmark]
-  data['Time'] = data['Time'] / 1000
-  data['Dim Length'] = data['Size']
+  
   l = ggplot(data, aes(x='Density',y='Time'))
   l += geom_line(aes(color='Variant'))
   l += geom_point(aes(color='Variant',shape='Variant'))
@@ -77,9 +78,9 @@ def lines(benchmark):
 def by_elem_count(benchmark):
   data = results[results['Benchmark'] == benchmark]
   data['Element Count'] = data['Size'] * data['Size'] * data['Density']
-  data['Time'] = data['Time'] / 1000
   l = ggplot(data, aes(x='Element Count', y='Time'))
-  l += geom_point(aes(color='Variant',shape='factor(Size)'))
+  #l += geom_point(aes(color='Variant',shape='Variant'))
+  l += geom_point(aes(color='Density',shape='Variant'))
   l += scale_x_log10()
   l += scale_y_log10()
   outfile = '_'.join([benchmark, 'ElementCount', 'perf.pdf'])
@@ -87,9 +88,12 @@ def by_elem_count(benchmark):
 
 def ratio(benchmark):
   data = results[results['Benchmark'] == benchmark]
-  pivot = data.pivot_table(index=['Size', 'Density'], columns='Variant', values='Time')
+  pivot = data.pivot_table(index=['Size', 'Density'], columns='Variant', values='Time',dropna=True)
+  print('pivot:', pivot)
   pivot['Ratio'] = pivot['Specialized'] / pivot['SparseRAJA']
-  mean = scipy.stats.gmean(pivot['Ratio'])
+  rat = pivot['Ratio'] 
+  rat = [r for r in rat if r == r]
+  mean = scipy.stats.gmean(rat)
   print('\n\n')
   print('Geometric Mean of SparseRAJA speedup relative to Specialized Variant: ', mean)
   print('\n\n')
@@ -100,10 +104,12 @@ def crossover(benchmark):
   pivot['diff'] = pivot['SparseRAJA'] - pivot['Dense']
   print(pivot)
 
+def dots(benchmark):
+  data = results[results['Benchmark'] == benchmark]
 
-ratio('SpMV')
-crossover('SpMV')
-quit()
+#ratio('SpMV')
+#crossover('SpMV')
 lines('SpMV')
-tables('SpMV')
-by_elem_count('SpMV')
+lines('GauSei')
+#tables('SpMV')
+#by_elem_count('SpMV')
