@@ -134,7 +134,7 @@ void SpMV_dispatch(int dimSize, double nonzeroDensity,
       y(i) += refData(i,j) * x(j);
     };
 
-    auto knl = make_sparse_kernel<POLICY>(dense_segs, refData, lam);
+    auto knl = make_sparse_kernel_sym<POLICY>(make_tuple(0,0), dense_segs, refData, lam);
 
     auto start = now();
     for(int i = 0; i < numReps; i++) {
