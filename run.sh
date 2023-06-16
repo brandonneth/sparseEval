@@ -121,11 +121,14 @@ for size in $SIZES; do
     for run in $(seq $NUMRUNS); do
         echo $cmd
       if [[ $DRY -eq 0 ]] ; then
-	$cmd >> $OUTFILE
+        TEMPFILE=$(mktemp)
+	$cmd >> $TEMPFILE
         if [ $? -ne 0 ] ; then
           echo Run failed.
 	  exit
 	fi
+        cat $TEMPFILE >> $OUTFILE
+        rm $TEMPFILE
       fi
     done
   done
