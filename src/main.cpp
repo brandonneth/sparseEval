@@ -69,7 +69,7 @@ void SpMV_dispatch(int dimSize, double nonzeroDensity,
 
     auto elapsed = elapsed_time(start, stop);
 
-    std::cout << "SpMV,Dense," << dimSize << "," << nonzeroDensity << "," << elapsed << "\n";
+    std::cout << "SpMV,Dense," << dimSize << "," << nonzeroDensity << "," << elapsed << ",1.0\n";
     delete[] A.get_data();
     delete[] y.get_data();
   } // runDense
@@ -105,7 +105,7 @@ void SpMV_dispatch(int dimSize, double nonzeroDensity,
     }
     auto stop = now();
     auto elapsed = elapsed_time(start, stop);
-    std::cout << "SpMV,Specialized," << dimSize << "," << nonzeroDensity << "," << elapsed << "\n";
+    std::cout << "SpMV,Specialized," << dimSize << "," << nonzeroDensity << "," << elapsed << ",1.0\n";
 
     delete[] A_cols.get_data();
     delete[] A_rows.get_data();
@@ -142,7 +142,7 @@ void SpMV_dispatch(int dimSize, double nonzeroDensity,
     }
     auto stop = now();
     auto elapsed = elapsed_time(start, stop);
-    std::cout << "SpMV,SparseRAJA," << dimSize << "," << nonzeroDensity << "," << elapsed << "\n";
+    std::cout << "SpMV,SparseRAJA," << dimSize << "," << nonzeroDensity << "," << elapsed << "," << refData.get_hit_rate() << "\n";
 
     std::cerr << "Hit rate: " << refData.get_hit_rate() << "\n";
     delete[] y.get_data();
@@ -217,7 +217,7 @@ void GauSei_dispatch(int dimSize, double nonzeroDensity,
     }
     auto stop = now();
     auto elapsed = elapsed_time(start, stop);
-    std::cout << "GauSei,Dense," << dimSize << "," << nonzeroDensity << "," << elapsed << "\n";
+    std::cout << "GauSei,Dense," << dimSize << "," << nonzeroDensity << "," << elapsed << ",1.0\n";
 
 
   } //GauSei Dense
@@ -267,7 +267,7 @@ void GauSei_dispatch(int dimSize, double nonzeroDensity,
     }
     auto stop = now();
     auto elapsed = elapsed_time(start, stop);
-    std::cout << "GauSei,Specialized," << dimSize << "," << nonzeroDensity << "," << elapsed << "\n";
+    std::cout << "GauSei,Specialized," << dimSize << "," << nonzeroDensity << "," << elapsed <<",1.0" << "\n";
 
     delete[] A_rows.get_data();
     delete[] A_cols.get_data();
@@ -317,7 +317,7 @@ void GauSei_dispatch(int dimSize, double nonzeroDensity,
     }
     auto stop = now();
     auto elapsed = elapsed_time(start, stop);
-    std::cout << "GauSei,SparseRAJA," << dimSize << "," << nonzeroDensity << "," << elapsed << "\n";
+    std::cout << "GauSei,SparseRAJA," << dimSize << "," << nonzeroDensity << "," << elapsed << "," << refData.get_hit_rate() << "\n";
 
     std::cerr << "Hit rate: " << refData.get_hit_rate() << "\n";
     delete[] x.get_data();

@@ -77,7 +77,7 @@ done
 if [[ $APPEND -ne 1 ]] ; then
   rm $OUTFILE
   touch $OUTFILE
-  echo "Benchmark, Variant, Size, Density, Time" > $OUTFILE
+  echo "Benchmark, Variant, Size, Density, Time, Hit Rate" > $OUTFILE
 fi
 
 if [[ $CONFIGURE -ne 0 ]] ; then
