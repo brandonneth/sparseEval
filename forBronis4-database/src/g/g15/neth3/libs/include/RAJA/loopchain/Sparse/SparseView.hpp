@@ -25,8 +25,8 @@ struct  SparseView {
 
   void* get_data() { return impl.get_data();}
   
-  auto val(idx_t i) {return impl.val[i];}
-  auto dim(idx_t i) {return impl.dim(i);}
+  ElmType & val(idx_t i) {return impl.val[i];}
+  std::vector<idx_t> & dim(idx_t i) {return impl.dim(i);}
   auto size() {return impl.size();}
   template <typename... Args>
   SymAccessList operator () (SymIterator symIterator, Args... args) 
