@@ -156,7 +156,7 @@ void SpMV_dispatch(int dimSize, double nonzeroDensity,
 
 void GauSei_dispatch(int dimSize, double nonzeroDensity, 
                    int runDense, int runSpecialized, int runSparseRAJA) {
-  int numReps = 1;
+  int numReps = 1000;
   auto refData = make_random_sparse_view2<double,true,true>(dimSize, nonzeroDensity);
   DenseView1 b(new double[dimSize], dimSize);
   for(int i = 0; i < dimSize; i++) {
