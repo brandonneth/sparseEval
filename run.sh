@@ -128,7 +128,8 @@ for size in $SIZES; do
           echo Run failed.
 	  exit
 	fi
-        cat $TEMPFILE >> $OUTFILE
+        echo Getting lock and writing to results file...
+        flock -x $OUTFILE cat $TEMPFILE >> $OUTFILE
         rm $TEMPFILE
       fi
     done
