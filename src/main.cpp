@@ -24,6 +24,18 @@ auto elapsed_time(std::chrono::time_point<std::chrono::high_resolution_clock> st
 }
 
 
+template <bool useDIAG, typename T>
+RAJA_INLINE
+auto msv_dispatch(T refData) {
+  if constexpr (useDIAG) {
+    return make_sparse_view_diag<double>(refData.impl.indices[0], refData.impl.indices[1], refData.impl.val);
+  } else {
+    return make_sparse_view<double>(refData.impl.indices[0], refData.impl.indices[1], refData.impl.val);
+  }
+}
+   
+
+
 void SpMV_dispatch(int dimSize, double nonzeroDensity,
                    int runDense, int runSpecialized, int runSparseRAJA) {
   int numReps = 1000;
@@ -284,7 +296,8 @@ void GauSei_dispatch(int dimSize, double nonzeroDensity,
   } //GauSei Specialized
 
   if (runSparseRAJA) {
-    auto A = make_sparse_view_diag<double>(refData.impl.indices[0], refData.impl.indices[1], refData.impl.val);
+    auto A = msv_dispatch<sparseRAJADIAG>(refData);
+
     refData.reset_counters();
     DenseView1 x(new double[dimSize], dimSize);
     double temp = 0.0;
