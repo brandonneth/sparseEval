@@ -77,7 +77,7 @@ done
 if [[ $APPEND -ne 1 ]] ; then
   rm $OUTFILE
   touch $OUTFILE
-  echo "Benchmark, Variant, Size, Density, Time, Hit Rate" > $OUTFILE
+  echo "Benchmark, Variant, Size, Density, Time, Hit Rate,DIAG" > $OUTFILE
 fi
 
 if [[ $CONFIGURE -ne 0 ]] ; then
@@ -114,6 +114,8 @@ for size in $SIZES; do
     cmd="./build/bin/sparseEval.exe $DENSE $SPECIALIZED $SPARSERAJA $SPMV $GAUSEI $INCHOLFACT $size $density"
     if [[ $PROFILE -eq 1 ]] ; then
 	cmd="hpcrun -o $OUTFILE $cmd"
+        echo  "hpcrun command: $cmd"
+        echo "Running..."
     	$cmd
 	hpcstruct ./build/bin/sparseEval.exe -Isrc/+
 	hpcprof $OUTFILE -SsparseEval.exe.hpcstruct -o $OUTFILE-database

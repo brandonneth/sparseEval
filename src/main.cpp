@@ -9,6 +9,10 @@ void usage() {
   std::cerr << "Usage: ./sparseEval.exe RunDense RunSpecialized RunSparseRAJA RunSpMV RunGauSei RunInCholFact DimSize NonzeroDensity\n"; 
 }
 
+void write_point(std::string benchmark, std::string variant, int size, double density, long int time, double hitrate=0.0, bool DIAG=false) {
+  std::cout << benchmark << "," << variant << "," << size << "," << density << "," << time << "," << hitrate << "," << DIAG << "\n";
+}
+
 using namespace RAJA;
 using DenseView1 = View<double, Layout<1>>;
 using DenseView2 = View<double, Layout<2>>;
@@ -69,7 +73,7 @@ void SpMV_dispatch(int dimSize, double nonzeroDensity,
 
     auto elapsed = elapsed_time(start, stop);
 
-    std::cout << "SpMV,Dense," << dimSize << "," << nonzeroDensity << "," << elapsed << ",1.0\n";
+    write_point("SpMV","Dense", dimSize, nonzeroDensity, elapsed);
     delete[] A.get_data();
     delete[] y.get_data();
   } // runDense
@@ -105,7 +109,8 @@ void SpMV_dispatch(int dimSize, double nonzeroDensity,
     }
     auto stop = now();
     auto elapsed = elapsed_time(start, stop);
-    std::cout << "SpMV,Specialized," << dimSize << "," << nonzeroDensity << "," << elapsed << ",1.0\n";
+
+    write_point("SpMV","Specialized", dimSize, nonzeroDensity, elapsed, 1.0);
 
     delete[] A_cols.get_data();
     delete[] A_rows.get_data();
@@ -142,7 +147,7 @@ void SpMV_dispatch(int dimSize, double nonzeroDensity,
     }
     auto stop = now();
     auto elapsed = elapsed_time(start, stop);
-    std::cout << "SpMV,SparseRAJA," << dimSize << "," << nonzeroDensity << "," << elapsed << "," << refData.get_hit_rate() << "\n";
+    write_point("SpMV","SparseRAJA", dimSize, nonzeroDensity, elapsed, refData.get_hit_rate());
 
     std::cerr << "Hit rate: " << refData.get_hit_rate() << "\n";
     delete[] y.get_data();
@@ -154,10 +159,11 @@ void SpMV_dispatch(int dimSize, double nonzeroDensity,
 
 
 
+template <bool specializedDIAG, bool sparseRAJADIAG>
 void GauSei_dispatch(int dimSize, double nonzeroDensity, 
                    int runDense, int runSpecialized, int runSparseRAJA) {
   int numReps = 1000;
-  auto refData = make_random_sparse_view2<double,true>(dimSize, nonzeroDensity);
+  auto refData = make_random_sparse_view2<double,true,specializedDIAG>(dimSize, nonzeroDensity);
   DenseView1 b(new double[dimSize], dimSize);
   for(int i = 0; i < dimSize; i++) {
     b(i) = std::rand(); 
@@ -217,7 +223,7 @@ void GauSei_dispatch(int dimSize, double nonzeroDensity,
     }
     auto stop = now();
     auto elapsed = elapsed_time(start, stop);
-    std::cout << "GauSei,Dense," << dimSize << "," << nonzeroDensity << "," << elapsed << ",1.0\n";
+    write_point("GauSei","Dense", dimSize, nonzeroDensity, elapsed, 1.0);
 
 
   } //GauSei Dense
@@ -267,8 +273,9 @@ void GauSei_dispatch(int dimSize, double nonzeroDensity,
     }
     auto stop = now();
     auto elapsed = elapsed_time(start, stop);
-    std::cout << "GauSei,Specialized," << dimSize << "," << nonzeroDensity << "," << elapsed <<",1.0" << "\n";
-
+    auto hitrate = refData.get_hit_rate();
+    write_point("GauSei","Specialized", dimSize, nonzeroDensity, elapsed, hitrate, specializedDIAG);
+    
     delete[] A_rows.get_data();
     delete[] A_cols.get_data();
     delete[] A_vals.get_data();
@@ -277,6 +284,7 @@ void GauSei_dispatch(int dimSize, double nonzeroDensity,
   } //GauSei Specialized
 
   if (runSparseRAJA) {
+    auto A = make_sparse_view_diag<double>(refData.impl.indices[0], refData.impl.indices[1], refData.impl.val);
     refData.reset_counters();
     DenseView1 x(new double[dimSize], dimSize);
     double temp = 0.0;
@@ -299,27 +307,29 @@ void GauSei_dispatch(int dimSize, double nonzeroDensity,
     auto lam1 = [&](auto i) {
       temp = 0.0;
     };
-    auto lam2 = [&](auto i, auto j) {
+    auto lam2 = [&](auto i, auto j) { 
       if (j != i) {
-        temp += refData(i,j) * x(j);
+        auto summand = A(i,j) * x(j);
+        temp += summand;
       }
     };
     auto lam3 = [&](auto i) {
-      x(i) = (b(i) - temp) / refData(i,i);
+      x(i) = (b(i) - temp) / A(i,i);
     };
 
-    auto knl = make_sparse_kernel_sym<POLICY, 1>(make_tuple(0,1), dense_segs, refData, lam1, lam2, lam3);
-
-
+    auto knl = make_sparse_kernel_sym<POLICY, 1>(make_tuple(0,1), dense_segs, A, lam1, lam2, lam3);
     auto start = now();
     for(int i = 0; i < numReps; i++) {
       knl();
     }
     auto stop = now();
     auto elapsed = elapsed_time(start, stop);
-    std::cout << "GauSei,SparseRAJA," << dimSize << "," << nonzeroDensity << "," << elapsed << "," << refData.get_hit_rate() << "\n";
+    write_point("GauSei","SparseRAJA", dimSize, nonzeroDensity, elapsed, A.get_hit_rate(), sparseRAJADIAG);
 
-    std::cerr << "Hit rate: " << refData.get_hit_rate() << "\n";
+    std::cerr << "Hit rate: " << A.get_hit_rate() << "\n";
+    std::cerr << "Num hits: " << A.get_hits() << "\n";
+    std::cerr << "Num misses: " << A.get_misses() << "\n";
+
     delete[] x.get_data();
 
 
@@ -366,7 +376,8 @@ int main(int argc, char * argv[]) {
   }
   
   if(runGauSei) {
-    GauSei_dispatch(dimSize, nonzeroDensity, runDense, runSpecialized, runSparseRAJA);
+    GauSei_dispatch<true,true>(dimSize, nonzeroDensity, runDense, runSpecialized, runSparseRAJA);
+    GauSei_dispatch<false,false>(dimSize, nonzeroDensity, runDense, runSpecialized, runSparseRAJA);
   }
   
   if(runInCholFact) {
