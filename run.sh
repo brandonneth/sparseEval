@@ -65,6 +65,8 @@ do
       ;;
      --profile) echo "Profiling with hpctoolkit";
       PROFILE=1
+      BUILD=1
+      CONFIGURE=1
 	module load hpctoolkit
       ;;
 
@@ -77,7 +79,7 @@ done
 if [[ $APPEND -ne 1 ]] ; then
   rm $OUTFILE
   touch $OUTFILE
-  echo "Benchmark, Variant, Size, Density, Time, Hit Rate,DIAG" > $OUTFILE
+  echo "Benchmark, Variant, Size, Density, Time, Hit Rate, DIAG" > $OUTFILE
 fi
 
 if [[ $CONFIGURE -ne 0 ]] ; then
