@@ -89,7 +89,7 @@ echo "Prepping build directory..."
   cd build
   echo Configuring with install prefix \"$libpath\" ...
 
-  cmake .. -DENABLE_OPENMP=On -DBLT_CXX_STD=c++17 -DCMAKE_BUILD_TYPE=RELWITHDEBINFO -DCMAKE_INSTALL_PREFIX=$libpath
+  cmake .. -DENABLE_OPENMP=On -DBLT_CXX_STD=c++20 -DCMAKE_BUILD_TYPE=RELWITHDEBINFO -DCMAKE_INSTALL_PREFIX=$libpath
   if [ $? -ne 0 ] ; then
     echo "Configure failed."
     exit;
