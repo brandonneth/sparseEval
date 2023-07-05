@@ -1,0 +1,950 @@
+<?xml version="1.0"?>
+<HPCToolkitExperiment version="2.2">
+<!--DTD file="experiment.dtd"-->
+<Header n="sparseEval.exe">
+  <Info/>
+</Header>
+<SecCallPathProfile i="0" n="sparseEval.exe">
+<SecHeader>
+  <MetricTable>
+    <Metric i="2" n="CPUTIME (sec):Sum (I)" o="0" v="derived-incr" md="Sum over rank/thread of inclusive 'CPUTIME (sec)'" em="0" es="0" ep="0" t="inclusive" partner="3" show="1" show-percent="1">
+      <MetricFormula t="combine" frm="sum($2, $2)"/>
+      <MetricFormula t="finalize" frm="$2"/>
+      <Info><NV n="units" v="events"/></Info>
+    </Metric>
+    <Metric i="3" n="CPUTIME (sec):Sum (E)" o="-1" v="derived-incr" md="Sum over rank/thread of exclusive 'CPUTIME (sec)'" em="0" es="0" ep="0" t="exclusive" partner="2" show="1" show-percent="1">
+      <MetricFormula t="combine" frm="sum($3, $3)"/>
+      <MetricFormula t="finalize" frm="$3"/>
+      <Info><NV n="units" v="events"/></Info>
+    </Metric>
+  </MetricTable>
+  <MetricDBTable>
+  </MetricDBTable>
+  <LoadModuleTable>
+    <LoadModule i="2" n="/g/g15/neth3/sparseEval/build/bin/sparseEval.exe"/>
+    <LoadModule i="37112" n="/usr/tce/backend/installations/linux-rhel8-x86_64/gcc-10.3.1/hpctoolkit-2022.05.15-7yd7lum3fyltpjtw3ytdjsur3wrf2tfe/lib/hpctoolkit/ext-libs/libmonitor.so.0.0.0"/>
+  </LoadModuleTable>
+  <FileTable>
+    <File i="595" n="./src/collab/usr/global/tools/tce4/packages/gcc/gcc-10.3.1/include/c++/10/bits/stl_algo.h"/>
+    <File i="1659" n="./src/collab/usr/global/tools/tce4/packages/gcc/gcc-10.3.1/include/c++/10/bits/stl_algobase.h"/>
+    <File i="1661" n="./src/collab/usr/global/tools/tce4/packages/gcc/gcc-10.3.1/include/c++/10/bits/move.h"/>
+    <File i="4240" n="./src/collab/usr/global/tools/tce4/packages/gcc/gcc-10.3.1/include/c++/10/bits/stl_vector.h"/>
+    <File i="4610" n="./src/g/g15/neth3/RAJA/include/RAJA/loopchain/Sparse/SparseSegment.hpp"/>
+    <File i="19861" n="./src/g/g15/neth3/RAJA/include/RAJA/loopchain/Sparse/DIAG.hpp"/>
+    <File i="23093" n="./src/g/g15/neth3/RAJA/include/RAJA/loopchain/Sparse/SparseView.hpp"/>
+    <File i="27482" n="./src/g/g15/neth3/sparseEval/src/main.cpp"/>
+    <File i="30491" n="./src/g/g15/neth3/RAJA/include/RAJA/loopchain/KernelWrapper.hpp"/>
+    <File i="30844" n="./src/g/g15/neth3/RAJA/include/RAJA/pattern/kernel.hpp"/>
+    <File i="30906" n="./src/g/g15/neth3/RAJA/include/RAJA/pattern/kernel/internal/LoopData.hpp"/>
+    <File i="30909" n="./src/g/g15/neth3/libs/quartz/include/camp/tuple.hpp"/>
+    <File i="31001" n="./src/g/g15/neth3/RAJA/include/RAJA/pattern/kernel/internal/StatementList.hpp"/>
+    <File i="31005" n="./src/g/g15/neth3/RAJA/include/RAJA/pattern/kernel/For.hpp"/>
+    <File i="31020" n="./src/g/g15/neth3/RAJA/include/RAJA/policy/loop/forall.hpp"/>
+    <File i="31042" n="./src/g/g15/neth3/RAJA/include/RAJA/pattern/kernel/Lambda.hpp"/>
+    <File i="31060" n="./src/g/g15/neth3/RAJA/include/RAJA/util/TypedViewBase.hpp"/>
+    <File i="31066" n="./src/g/g15/neth3/RAJA/include/RAJA/util/Layout.hpp"/>
+    <File i="31133" n="./src/g/g15/neth3/RAJA/include/RAJA/util/Span.hpp"/>
+    <File i="31145" n="./src/g/g15/neth3/RAJA/include/RAJA/index/RangeSegment.hpp"/>
+    <File i="37113" n="&lt;unknown file&gt;"/>
+  </FileTable>
+  <ProcedureTable>
+    <Procedure i="1603" n="std::__introsort_loop&lt;__gnu_cxx::__normal_iterator&lt;camp::tuple&lt;std::array&lt;long, 2ul&gt;, double&gt;*, std::vector&lt;camp::tuple&lt;std::array&lt;long, 2ul&gt;, double&gt;, std::allocator&lt;camp::tuple&lt;std::array&lt;long, 2ul&gt;, double&gt; &gt; &gt; &gt;, long, __gnu_cxx::__ops::_Iter_comp_iter&lt;RAJA::DIAG&lt;double, 2ul&gt;::sort()::{lambda(auto:1, auto:2)#1}&gt; &gt;(__gnu_cxx::__normal_iterator&lt;camp::tuple&lt;std::array&lt;long, 2ul&gt;, double&gt;*, std::vector&lt;camp::tuple&lt;std::array&lt;long, 2ul&gt;, double&gt;, std::allocator&lt;camp::tuple&lt;std::array&lt;long, 2ul&gt;, double&gt; &gt; &gt; &gt;, __gnu_cxx::__normal_iterator&lt;camp::tuple&lt;std::array&lt;long, 2ul&gt;, double&gt;*, std::vector&lt;camp::tuple&lt;std::array&lt;long, 2ul&gt;, double&gt;, std::allocator&lt;camp::tuple&lt;std::array&lt;long, 2ul&gt;, double&gt; &gt; &gt; &gt;, long, __gnu_cxx::__ops::_Iter_comp_iter&lt;RAJA::DIAG&lt;double, 2ul&gt;::sort()::{lambda(auto:1, auto:2)#1}&gt;)" v="0x40bab0"/>
+    <Procedure i="1617" n="" v="0"/>
+    <Procedure i="1618" n="std::__unguarded_partition_pivot&lt;__gnu_cxx::__normal_iterator&lt;camp::tuple&lt;std::array&lt;long, 2ul&gt;, double&gt;*, std::vector&lt;camp::tuple&lt;std::array&lt;long, 2ul&gt;, double&gt;, std::allocator&lt;camp::tuple&lt;std::array&lt;long, 2ul&gt;, double&gt; &gt; &gt; &gt;, __gnu_cxx::__ops::_Iter_comp_iter&lt;RAJA::DIAG&lt;double, 2ul&gt;::sort()::{lambda(auto:1, auto:2)#1}&gt; &gt;(__gnu_cxx::__normal_iterator&lt;camp::tuple&lt;std::array&lt;long, 2ul&gt;, double&gt;*, std::vector&lt;camp::tuple&lt;std::array&lt;long, 2ul&gt;, double&gt;, std::allocator&lt;camp::tuple&lt;std::array&lt;long, 2ul&gt;, double&gt; &gt; &gt; &gt;, __gnu_cxx::__normal_iterator&lt;camp::tuple&lt;std::array&lt;long, 2ul&gt;, double&gt;*, std::vector&lt;camp::tuple&lt;std::array&lt;long, 2ul&gt;, double&gt;, std::allocator&lt;camp::tuple&lt;std::array&lt;long, 2ul&gt;, double&gt; &gt; &gt; &gt;, __gnu_cxx::__ops::_Iter_comp_iter&lt;RAJA::DIAG&lt;double, 2ul&gt;::sort()::{lambda(auto:1, auto:2)#1}&gt;)" v="0"/>
+    <Procedure i="1632" n="std::__unguarded_partition&lt;__gnu_cxx::__normal_iterator&lt;camp::tuple&lt;std::array&lt;long, 2ul&gt;, double&gt;*, std::vector&lt;camp::tuple&lt;std::array&lt;long, 2ul&gt;, double&gt;, std::allocator&lt;camp::tuple&lt;std::array&lt;long, 2ul&gt;, double&gt; &gt; &gt; &gt;, __gnu_cxx::__ops::_Iter_comp_iter&lt;RAJA::DIAG&lt;double, 2ul&gt;::sort()::{lambda(auto:1, auto:2)#1}&gt; &gt;(__gnu_cxx::__normal_iterator&lt;camp::tuple&lt;std::array&lt;long, 2ul&gt;, double&gt;*, std::vector&lt;camp::tuple&lt;std::array&lt;long, 2ul&gt;, double&gt;, std::allocator&lt;camp::tuple&lt;std::array&lt;long, 2ul&gt;, double&gt; &gt; &gt; &gt;, __gnu_cxx::__normal_iterator&lt;camp::tuple&lt;std::array&lt;long, 2ul&gt;, double&gt;*, std::vector&lt;camp::tuple&lt;std::array&lt;long, 2ul&gt;, double&gt;, std::allocator&lt;camp::tuple&lt;std::array&lt;long, 2ul&gt;, double&gt; &gt; &gt; &gt;, __gnu_cxx::__normal_iterator&lt;camp::tuple&lt;std::array&lt;long, 2ul&gt;, double&gt;*, std::vector&lt;camp::tuple&lt;std::array&lt;long, 2ul&gt;, double&gt;, std::allocator&lt;camp::tuple&lt;std::array&lt;long, 2ul&gt;, double&gt; &gt; &gt; &gt;, __gnu_cxx::__ops::_Iter_comp_iter&lt;RAJA::DIAG&lt;double, 2ul&gt;::sort()::{lambda(auto:1, auto:2)#1}&gt;)" v="0"/>
+    <Procedure i="1659" n="std::iter_swap&lt;__gnu_cxx::__normal_iterator&lt;camp::tuple&lt;std::array&lt;long, 2ul&gt;, double&gt;*, std::vector&lt;camp::tuple&lt;std::array&lt;long, 2ul&gt;, double&gt;, std::allocator&lt;camp::tuple&lt;std::array&lt;long, 2ul&gt;, double&gt; &gt; &gt; &gt;, __gnu_cxx::__normal_iterator&lt;camp::tuple&lt;std::array&lt;long, 2ul&gt;, double&gt;*, std::vector&lt;camp::tuple&lt;std::array&lt;long, 2ul&gt;, double&gt;, std::allocator&lt;camp::tuple&lt;std::array&lt;long, 2ul&gt;, double&gt; &gt; &gt; &gt; &gt;(__gnu_cxx::__normal_iterator&lt;camp::tuple&lt;std::array&lt;long, 2ul&gt;, double&gt;*, std::vector&lt;camp::tuple&lt;std::array&lt;long, 2ul&gt;, double&gt;, std::allocator&lt;camp::tuple&lt;std::array&lt;long, 2ul&gt;, double&gt; &gt; &gt; &gt;, __gnu_cxx::__normal_iterator&lt;camp::tuple&lt;std::array&lt;long, 2ul&gt;, double&gt;*, std::vector&lt;camp::tuple&lt;std::array&lt;long, 2ul&gt;, double&gt;, std::allocator&lt;camp::tuple&lt;std::array&lt;long, 2ul&gt;, double&gt; &gt; &gt; &gt;)" v="0"/>
+    <Procedure i="1660" n="" v="0"/>
+    <Procedure i="1661" n="std::swap&lt;camp::tuple&lt;std::array&lt;long, 2ul&gt;, double&gt; &gt;(camp::tuple&lt;std::array&lt;long, 2ul&gt;, double&gt;&amp;, camp::tuple&lt;std::array&lt;long, 2ul&gt;, double&gt;&amp;)" v="0"/>
+    <Procedure i="4609" n="RAJA::CompressedLeadIterator::update(long)" v="0x405a80"/>
+    <Procedure i="4610" n="&lt;inline&gt;" v="0"/>
+    <Procedure i="4617" n="" v="0"/>
+    <Procedure i="4618" n="RAJA::CompressedFollowSegment::update(long, long)" v="0"/>
+    <Procedure i="4622" n="std::vector&lt;RAJA::CompressedFollowSegment*, std::allocator&lt;RAJA::CompressedFollowSegment*&gt; &gt;::size() const" v="0"/>
+    <Procedure i="20004" n="RAJA::DIAG&lt;double, 2ul&gt;::DIAG(std::vector&lt;std::vector&lt;long, std::allocator&lt;long&gt; &gt;, std::allocator&lt;std::vector&lt;long, std::allocator&lt;long&gt; &gt; &gt; &gt; const&amp;, std::vector&lt;double, std::allocator&lt;double&gt; &gt; const&amp;, std::vector&lt;long, std::allocator&lt;long&gt; &gt; const&amp;)" v="0x40bd20"/>
+    <Procedure i="20052" n="" v="0"/>
+    <Procedure i="20053" n="RAJA::DIAG&lt;double, 2ul&gt;::verify()" v="0"/>
+    <Procedure i="20099" n="RAJA::DIAG&lt;double, 2ul&gt;::sort()" v="0"/>
+    <Procedure i="20185" n="std::sort&lt;__gnu_cxx::__normal_iterator&lt;camp::tuple&lt;std::array&lt;long, 2ul&gt;, double&gt;*, std::vector&lt;camp::tuple&lt;std::array&lt;long, 2ul&gt;, double&gt;, std::allocator&lt;camp::tuple&lt;std::array&lt;long, 2ul&gt;, double&gt; &gt; &gt; &gt;, RAJA::DIAG&lt;double, 2ul&gt;::sort()::{lambda(auto:1, auto:2)#1}&gt;(__gnu_cxx::__normal_iterator&lt;camp::tuple&lt;std::array&lt;long, 2ul&gt;, double&gt;*, std::vector&lt;camp::tuple&lt;std::array&lt;long, 2ul&gt;, double&gt;, std::allocator&lt;camp::tuple&lt;std::array&lt;long, 2ul&gt;, double&gt; &gt; &gt; &gt;, __gnu_cxx::__normal_iterator&lt;camp::tuple&lt;std::array&lt;long, 2ul&gt;, double&gt;*, std::vector&lt;camp::tuple&lt;std::array&lt;long, 2ul&gt;, double&gt;, std::allocator&lt;camp::tuple&lt;std::array&lt;long, 2ul&gt;, double&gt; &gt; &gt; &gt;, RAJA::DIAG&lt;double, 2ul&gt;::sort()::{lambda(auto:1, auto:2)#1})" v="0"/>
+    <Procedure i="20187" n="std::__sort&lt;__gnu_cxx::__normal_iterator&lt;camp::tuple&lt;std::array&lt;long, 2ul&gt;, double&gt;*, std::vector&lt;camp::tuple&lt;std::array&lt;long, 2ul&gt;, double&gt;, std::allocator&lt;camp::tuple&lt;std::array&lt;long, 2ul&gt;, double&gt; &gt; &gt; &gt;, __gnu_cxx::__ops::_Iter_comp_iter&lt;RAJA::DIAG&lt;double, 2ul&gt;::sort()::{lambda(auto:1, auto:2)#1}&gt; &gt;(__gnu_cxx::__normal_iterator&lt;camp::tuple&lt;std::array&lt;long, 2ul&gt;, double&gt;*, std::vector&lt;camp::tuple&lt;std::array&lt;long, 2ul&gt;, double&gt;, std::allocator&lt;camp::tuple&lt;std::array&lt;long, 2ul&gt;, double&gt; &gt; &gt; &gt;, __gnu_cxx::__normal_iterator&lt;camp::tuple&lt;std::array&lt;long, 2ul&gt;, double&gt;*, std::vector&lt;camp::tuple&lt;std::array&lt;long, 2ul&gt;, double&gt;, std::allocator&lt;camp::tuple&lt;std::array&lt;long, 2ul&gt;, double&gt; &gt; &gt; &gt;, __gnu_cxx::__ops::_Iter_comp_iter&lt;RAJA::DIAG&lt;double, 2ul&gt;::sort()::{lambda(auto:1, auto:2)#1}&gt;)" v="0"/>
+    <Procedure i="20190" n="&lt;inline&gt;" v="0"/>
+    <Procedure i="22690" n="RAJA::CompressedFollowIterator::operator[](unsigned long)" v="0x405a00"/>
+    <Procedure i="22694" n="std::vector&lt;long, std::allocator&lt;long&gt; &gt;::operator[](unsigned long)" v="0"/>
+    <Procedure i="22696" n="RAJA::CompressedFollowIterator::index()" v="0x405a20"/>
+    <Procedure i="22699" n="RAJA::CompressedFollowIterator::update(long)" v="0x405a30"/>
+    <Procedure i="22706" n="RAJA::CompressedLeadIterator::operator[](unsigned long)" v="0x405a60"/>
+    <Procedure i="23462" n="RAJA::make_sparse_view_permuted&lt;double, 2l, RAJA::DIAG, std::vector&lt;long, std::allocator&lt;long&gt; &gt;, std::vector&lt;long, std::allocator&lt;long&gt; &gt;, std::vector&lt;double, std::allocator&lt;double&gt; &gt;, std::vector&lt;long, std::allocator&lt;long&gt; &gt; &gt;(std::vector&lt;long, std::allocator&lt;long&gt; &gt;, std::vector&lt;long, std::allocator&lt;long&gt; &gt;, std::vector&lt;double, std::allocator&lt;double&gt; &gt;, std::vector&lt;long, std::allocator&lt;long&gt; &gt;)" v="0x40c140"/>
+    <Procedure i="23991" n="RAJA::make_sparse_view&lt;double, 2l, RAJA::DIAG, std::vector&lt;long, std::allocator&lt;long&gt; &gt;, std::vector&lt;long, std::allocator&lt;long&gt; &gt;, std::vector&lt;double, std::allocator&lt;double&gt; &gt; &gt;(std::vector&lt;long, std::allocator&lt;long&gt; &gt;, std::vector&lt;long, std::allocator&lt;long&gt; &gt;, std::vector&lt;double, std::allocator&lt;double&gt; &gt;)" v="0x40c900"/>
+    <Procedure i="24181" n="RAJA::make_random_sparse_view&lt;double, 2l, RAJA::DIAG&gt;(long, double, bool)" v="0x40cb70"/>
+    <Procedure i="24532" n="" v="0"/>
+    <Procedure i="24533" n="RAJA::make_random_sparse_view_helper&lt;double, 2l, RAJA::DIAG, 0l, 1l&gt;(std::vector&lt;std::vector&lt;long, std::allocator&lt;long&gt; &gt;, std::allocator&lt;std::vector&lt;long, std::allocator&lt;long&gt; &gt; &gt; &gt;, std::vector&lt;double, std::allocator&lt;double&gt; &gt;, camp::int_seq&lt;long, 0l, 1l&gt;)" v="0"/>
+    <Procedure i="30332" n="GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)" v="0x416630"/>
+    <Procedure i="30490" n="" v="0"/>
+    <Procedure i="30491" n="RAJA::KernelWrapper&lt;camp::list&lt;RAJA::statement::For&lt;0l, RAJA::policy::loop::loop_exec, RAJA::statement::Lambda&lt;0l, camp::list&lt;RAJA::internal::LambdaArg&lt;RAJA::internal::lambda_arg_seg_t, 0l&gt; &gt; &gt;, RAJA::statement::For&lt;1l, RAJA::policy::loop::loop_exec, RAJA::statement::Lambda&lt;1l&gt; &gt;, RAJA::statement::Lambda&lt;2l, camp::list&lt;RAJA::internal::LambdaArg&lt;RAJA::internal::lambda_arg_seg_t, 0l&gt; &gt; &gt; &gt; &gt;, camp::tuple&lt;RAJA::SparseSegment, RAJA::SparseSegment&gt;, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#5}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1, auto:2)#6}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#7}&gt;::operator()() const" v="0"/>
+    <Procedure i="30492" n="" v="0"/>
+    <Procedure i="30493" n="RAJA::KernelWrapper&lt;camp::list&lt;RAJA::statement::For&lt;0l, RAJA::policy::loop::loop_exec, RAJA::statement::Lambda&lt;0l, camp::list&lt;RAJA::internal::LambdaArg&lt;RAJA::internal::lambda_arg_seg_t, 0l&gt; &gt; &gt;, RAJA::statement::For&lt;1l, RAJA::policy::loop::loop_exec, RAJA::statement::Lambda&lt;1l&gt; &gt;, RAJA::statement::Lambda&lt;2l, camp::list&lt;RAJA::internal::LambdaArg&lt;RAJA::internal::lambda_arg_seg_t, 0l&gt; &gt; &gt; &gt; &gt;, camp::tuple&lt;RAJA::SparseSegment, RAJA::SparseSegment&gt;, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#5}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1, auto:2)#6}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#7}&gt;::execute&lt;0l, 1l, 2l&gt;(camp::int_seq&lt;long, 0l, 1l, 2l&gt;) const" v="0"/>
+    <Procedure i="30844" n="RAJA::kernel&lt;camp::list&lt;RAJA::statement::For&lt;0l, RAJA::policy::loop::loop_exec, RAJA::statement::Lambda&lt;0l, camp::list&lt;RAJA::internal::LambdaArg&lt;RAJA::internal::lambda_arg_seg_t, 0l&gt; &gt; &gt;, RAJA::statement::For&lt;1l, RAJA::policy::loop::loop_exec, RAJA::statement::Lambda&lt;1l&gt; &gt;, RAJA::statement::Lambda&lt;2l, camp::list&lt;RAJA::internal::LambdaArg&lt;RAJA::internal::lambda_arg_seg_t, 0l&gt; &gt; &gt; &gt; &gt;, camp::tuple&lt;RAJA::SparseSegment, RAJA::SparseSegment&gt; const&amp;, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#5} const&amp;, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1, auto:2)#6} const&amp;, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#7} const&amp;&gt;(camp::tuple&lt;RAJA::SparseSegment, RAJA::SparseSegment&gt; const&amp;, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#5} const&amp;, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1, auto:2)#6} const&amp;, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#7} const&amp;)" v="0"/>
+    <Procedure i="30855" n="" v="0"/>
+    <Procedure i="30856" n="RAJA::kernel_param_resource&lt;camp::list&lt;RAJA::statement::For&lt;0l, RAJA::policy::loop::loop_exec, RAJA::statement::Lambda&lt;0l, camp::list&lt;RAJA::internal::LambdaArg&lt;RAJA::internal::lambda_arg_seg_t, 0l&gt; &gt; &gt;, RAJA::statement::For&lt;1l, RAJA::policy::loop::loop_exec, RAJA::statement::Lambda&lt;1l&gt; &gt;, RAJA::statement::Lambda&lt;2l, camp::list&lt;RAJA::internal::LambdaArg&lt;RAJA::internal::lambda_arg_seg_t, 0l&gt; &gt; &gt; &gt; &gt;, camp::tuple&lt;RAJA::SparseSegment, RAJA::SparseSegment&gt; const&amp;, camp::tuple&lt;&gt;, camp::resources::v1::Host, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#5} const&amp;, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1, auto:2)#6} const&amp;, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#7} const&amp;&gt;(camp::tuple&lt;RAJA::SparseSegment, RAJA::SparseSegment&gt; const&amp;, camp::tuple&lt;&gt;&amp;&amp;, camp::resources::v1::Host, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#5} const&amp;, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1, auto:2)#6} const&amp;, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#7} const&amp;)" v="0"/>
+    <Procedure i="30906" n="RAJA::internal::LoopData&lt;camp::tuple&lt;RAJA::Span&lt;RAJA::SparseIterator, long&gt;, RAJA::Span&lt;RAJA::SparseIterator, long&gt; &gt;, camp::tuple&lt;&gt;, camp::resources::v1::Host, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#5}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1, auto:2)#6}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#7}&gt;::LoopData(camp::tuple&lt;RAJA::Span&lt;RAJA::SparseIterator, long&gt;, RAJA::Span&lt;RAJA::SparseIterator, long&gt; &gt; const&amp;, camp::tuple&lt;&gt; const&amp;, camp::resources::v1::Host, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#5} const&amp;, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1, auto:2)#6} const&amp;, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#7} const&amp;)" v="0"/>
+    <Procedure i="30908" n="" v="0"/>
+    <Procedure i="30909" n="camp::tuple&lt;GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#5}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1, auto:2)#6}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#7}&gt;::tuple(GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#5} const&amp;, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1, auto:2)#6} const&amp;, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#7} const&amp;)" v="0"/>
+    <Procedure i="30910" n="" v="0"/>
+    <Procedure i="30911" n="camp::internal::tuple_helper&lt;camp::int_seq&lt;long, 0l, 1l, 2l&gt;, camp::list&lt;GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#5}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1, auto:2)#6}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#7}&gt; &gt;::tuple_helper&lt;GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#5} const&amp;, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1, auto:2)#6} const&amp;, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#7} const&amp;&gt;(GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#5} const&amp;, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1, auto:2)#6} const&amp;, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#7} const&amp;)" v="0"/>
+    <Procedure i="30913" n="camp::internal::tuple_storage&lt;0l, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#5}, false&gt;::tuple_storage&lt;GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#5} const&amp;&gt;(GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#5} const&amp;)" v="0"/>
+    <Procedure i="31001" n="RAJA::internal::execute_statement_list&lt;camp::list&lt;RAJA::statement::For&lt;0l, RAJA::policy::loop::loop_exec, RAJA::statement::Lambda&lt;0l, camp::list&lt;RAJA::internal::LambdaArg&lt;RAJA::internal::lambda_arg_seg_t, 0l&gt; &gt; &gt;, RAJA::statement::For&lt;1l, RAJA::policy::loop::loop_exec, RAJA::statement::Lambda&lt;1l&gt; &gt;, RAJA::statement::Lambda&lt;2l, camp::list&lt;RAJA::internal::LambdaArg&lt;RAJA::internal::lambda_arg_seg_t, 0l&gt; &gt; &gt; &gt; &gt;, RAJA::internal::LoopTypes&lt;camp::list&lt;void, void&gt;, camp::list&lt;void, void&gt; &gt;, RAJA::internal::LoopData&lt;camp::tuple&lt;RAJA::Span&lt;RAJA::SparseIterator, long&gt;, RAJA::Span&lt;RAJA::SparseIterator, long&gt; &gt;, camp::tuple&lt;&gt;, camp::resources::v1::Host, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#5}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1, auto:2)#6}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#7}&gt;&amp;&gt;(RAJA::internal::LoopData&lt;camp::tuple&lt;RAJA::Span&lt;RAJA::SparseIterator, long&gt;, RAJA::Span&lt;RAJA::SparseIterator, long&gt; &gt;, camp::tuple&lt;&gt;, camp::resources::v1::Host, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#5}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1, auto:2)#6}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#7}&gt;&amp;)" v="0"/>
+    <Procedure i="31002" n="" v="0"/>
+    <Procedure i="31003" n="RAJA::internal::StatementListExecutor&lt;0l, 1l, camp::list&lt;RAJA::statement::For&lt;0l, RAJA::policy::loop::loop_exec, RAJA::statement::Lambda&lt;0l, camp::list&lt;RAJA::internal::LambdaArg&lt;RAJA::internal::lambda_arg_seg_t, 0l&gt; &gt; &gt;, RAJA::statement::For&lt;1l, RAJA::policy::loop::loop_exec, RAJA::statement::Lambda&lt;1l&gt; &gt;, RAJA::statement::Lambda&lt;2l, camp::list&lt;RAJA::internal::LambdaArg&lt;RAJA::internal::lambda_arg_seg_t, 0l&gt; &gt; &gt; &gt; &gt;, RAJA::internal::LoopTypes&lt;camp::list&lt;void, void&gt;, camp::list&lt;void, void&gt; &gt; &gt;::exec&lt;RAJA::internal::LoopData&lt;camp::tuple&lt;RAJA::Span&lt;RAJA::SparseIterator, long&gt;, RAJA::Span&lt;RAJA::SparseIterator, long&gt; &gt;, camp::tuple&lt;&gt;, camp::resources::v1::Host, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#5}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1, auto:2)#6}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#7}&gt;&amp;&gt;(RAJA::internal::LoopData&lt;camp::tuple&lt;RAJA::Span&lt;RAJA::SparseIterator, long&gt;, RAJA::Span&lt;RAJA::SparseIterator, long&gt; &gt;, camp::tuple&lt;&gt;, camp::resources::v1::Host, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#5}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1, auto:2)#6}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#7}&gt;&amp;)" v="0"/>
+    <Procedure i="31005" n="RAJA::internal::StatementExecutor&lt;RAJA::statement::For&lt;0l, RAJA::policy::loop::loop_exec, RAJA::statement::Lambda&lt;0l, camp::list&lt;RAJA::internal::LambdaArg&lt;RAJA::internal::lambda_arg_seg_t, 0l&gt; &gt; &gt;, RAJA::statement::For&lt;1l, RAJA::policy::loop::loop_exec, RAJA::statement::Lambda&lt;1l&gt; &gt;, RAJA::statement::Lambda&lt;2l, camp::list&lt;RAJA::internal::LambdaArg&lt;RAJA::internal::lambda_arg_seg_t, 0l&gt; &gt; &gt; &gt;, RAJA::internal::LoopTypes&lt;camp::list&lt;void, void&gt;, camp::list&lt;void, void&gt; &gt; &gt;::exec&lt;RAJA::internal::LoopData&lt;camp::tuple&lt;RAJA::Span&lt;RAJA::SparseIterator, long&gt;, RAJA::Span&lt;RAJA::SparseIterator, long&gt; &gt;, camp::tuple&lt;&gt;, camp::resources::v1::Host, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#5}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1, auto:2)#6}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#7}&gt;&amp;&gt;(RAJA::internal::LoopData&lt;camp::tuple&lt;RAJA::Span&lt;RAJA::SparseIterator, long&gt;, RAJA::Span&lt;RAJA::SparseIterator, long&gt; &gt;, camp::tuple&lt;&gt;, camp::resources::v1::Host, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#5}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1, auto:2)#6}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#7}&gt;&amp;)" v="0"/>
+    <Procedure i="31019" n="" v="0"/>
+    <Procedure i="31020" n="RAJA::policy::loop::forall_impl&lt;RAJA::TypedRangeSegment&lt;long, long&gt;, RAJA::internal::ForWrapper&lt;0l, RAJA::internal::LoopData&lt;camp::tuple&lt;RAJA::Span&lt;RAJA::SparseIterator, long&gt;, RAJA::Span&lt;RAJA::SparseIterator, long&gt; &gt;, camp::tuple&lt;&gt;, camp::resources::v1::Host, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#5}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1, auto:2)#6}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#7}&gt;&amp;, RAJA::internal::LoopTypes&lt;camp::list&lt;long, void&gt;, camp::list&lt;long, void&gt; &gt;, RAJA::statement::Lambda&lt;0l, camp::list&lt;RAJA::internal::LambdaArg&lt;RAJA::internal::lambda_arg_seg_t, 0l&gt; &gt; &gt;, RAJA::statement::For&lt;1l, RAJA::policy::loop::loop_exec, RAJA::statement::Lambda&lt;1l&gt; &gt;, RAJA::statement::Lambda&lt;2l, camp::list&lt;RAJA::internal::LambdaArg&lt;RAJA::internal::lambda_arg_seg_t, 0l&gt; &gt; &gt; &gt;&amp;, camp::resources::v1::Host, RAJA::expt::ForallParamPack&lt;&gt; &gt;(camp::resources::v1::Host, RAJA::policy::loop::loop_exec const&amp;, RAJA::TypedRangeSegment&lt;long, long&gt;&amp;&amp;, RAJA::internal::ForWrapper&lt;0l, RAJA::internal::LoopData&lt;camp::tuple&lt;RAJA::Span&lt;RAJA::SparseIterator, long&gt;, RAJA::Span&lt;RAJA::SparseIterator, long&gt; &gt;, camp::tuple&lt;&gt;, camp::resources::v1::Host, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#5}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1, auto:2)#6}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#7}&gt;&amp;, RAJA::internal::LoopTypes&lt;camp::list&lt;long, void&gt;, camp::list&lt;long, void&gt; &gt;, RAJA::statement::Lambda&lt;0l, camp::list&lt;RAJA::internal::LambdaArg&lt;RAJA::internal::lambda_arg_seg_t, 0l&gt; &gt; &gt;, RAJA::statement::For&lt;1l, RAJA::policy::loop::loop_exec, RAJA::statement::Lambda&lt;1l&gt; &gt;, RAJA::statement::Lambda&lt;2l, camp::list&lt;RAJA::internal::LambdaArg&lt;RAJA::internal::lambda_arg_seg_t, 0l&gt; &gt; &gt; &gt;&amp;, RAJA::expt::ForallParamPack&lt;&gt;)" v="0"/>
+    <Procedure i="31024" n="" v="0"/>
+    <Procedure i="31025" n="RAJA::internal::ForWrapper&lt;0l, RAJA::internal::LoopData&lt;camp::tuple&lt;RAJA::Span&lt;RAJA::SparseIterator, long&gt;, RAJA::Span&lt;RAJA::SparseIterator, long&gt; &gt;, camp::tuple&lt;&gt;, camp::resources::v1::Host, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#5}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1, auto:2)#6}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#7}&gt;&amp;, RAJA::internal::LoopTypes&lt;camp::list&lt;long, void&gt;, camp::list&lt;long, void&gt; &gt;, RAJA::statement::Lambda&lt;0l, camp::list&lt;RAJA::internal::LambdaArg&lt;RAJA::internal::lambda_arg_seg_t, 0l&gt; &gt; &gt;, RAJA::statement::For&lt;1l, RAJA::policy::loop::loop_exec, RAJA::statement::Lambda&lt;1l&gt; &gt;, RAJA::statement::Lambda&lt;2l, camp::list&lt;RAJA::internal::LambdaArg&lt;RAJA::internal::lambda_arg_seg_t, 0l&gt; &gt; &gt; &gt;::operator()&lt;long&gt;(long)" v="0"/>
+    <Procedure i="31027" n="RAJA::internal::LoopData&lt;camp::tuple&lt;RAJA::Span&lt;RAJA::SparseIterator, long&gt;, RAJA::Span&lt;RAJA::SparseIterator, long&gt; &gt;, camp::tuple&lt;&gt;, camp::resources::v1::Host, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#5}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1, auto:2)#6}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#7}&gt;::assign_offset&lt;0l, , long&gt;(long const&amp;)" v="0"/>
+    <Procedure i="31032" n="RAJA::SparseIterator::update(long)" v="0"/>
+    <Procedure i="31036" n="RAJA::internal::GenericWrapper&lt;RAJA::internal::LoopData&lt;camp::tuple&lt;RAJA::Span&lt;RAJA::SparseIterator, long&gt;, RAJA::Span&lt;RAJA::SparseIterator, long&gt; &gt;, camp::tuple&lt;&gt;, camp::resources::v1::Host, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#5}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1, auto:2)#6}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#7}&gt;&amp;, RAJA::internal::LoopTypes&lt;camp::list&lt;long, void&gt;, camp::list&lt;long, void&gt; &gt;, RAJA::statement::Lambda&lt;0l, camp::list&lt;RAJA::internal::LambdaArg&lt;RAJA::internal::lambda_arg_seg_t, 0l&gt; &gt; &gt;, RAJA::statement::For&lt;1l, RAJA::policy::loop::loop_exec, RAJA::statement::Lambda&lt;1l&gt; &gt;, RAJA::statement::Lambda&lt;2l, camp::list&lt;RAJA::internal::LambdaArg&lt;RAJA::internal::lambda_arg_seg_t, 0l&gt; &gt; &gt; &gt;::exec()" v="0"/>
+    <Procedure i="31038" n="RAJA::internal::execute_statement_list&lt;camp::list&lt;RAJA::statement::Lambda&lt;0l, camp::list&lt;RAJA::internal::LambdaArg&lt;RAJA::internal::lambda_arg_seg_t, 0l&gt; &gt; &gt;, RAJA::statement::For&lt;1l, RAJA::policy::loop::loop_exec, RAJA::statement::Lambda&lt;1l&gt; &gt;, RAJA::statement::Lambda&lt;2l, camp::list&lt;RAJA::internal::LambdaArg&lt;RAJA::internal::lambda_arg_seg_t, 0l&gt; &gt; &gt; &gt;, RAJA::internal::LoopTypes&lt;camp::list&lt;long, void&gt;, camp::list&lt;long, void&gt; &gt;, RAJA::internal::LoopData&lt;camp::tuple&lt;RAJA::Span&lt;RAJA::SparseIterator, long&gt;, RAJA::Span&lt;RAJA::SparseIterator, long&gt; &gt;, camp::tuple&lt;&gt;, camp::resources::v1::Host, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#5}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1, auto:2)#6}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#7}&gt;&amp;&gt;(RAJA::internal::LoopData&lt;camp::tuple&lt;RAJA::Span&lt;RAJA::SparseIterator, long&gt;, RAJA::Span&lt;RAJA::SparseIterator, long&gt; &gt;, camp::tuple&lt;&gt;, camp::resources::v1::Host, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#5}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1, auto:2)#6}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#7}&gt;&amp;)" v="0"/>
+    <Procedure i="31040" n="RAJA::internal::StatementListExecutor&lt;0l, 3l, camp::list&lt;RAJA::statement::Lambda&lt;0l, camp::list&lt;RAJA::internal::LambdaArg&lt;RAJA::internal::lambda_arg_seg_t, 0l&gt; &gt; &gt;, RAJA::statement::For&lt;1l, RAJA::policy::loop::loop_exec, RAJA::statement::Lambda&lt;1l&gt; &gt;, RAJA::statement::Lambda&lt;2l, camp::list&lt;RAJA::internal::LambdaArg&lt;RAJA::internal::lambda_arg_seg_t, 0l&gt; &gt; &gt; &gt;, RAJA::internal::LoopTypes&lt;camp::list&lt;long, void&gt;, camp::list&lt;long, void&gt; &gt; &gt;::exec&lt;RAJA::internal::LoopData&lt;camp::tuple&lt;RAJA::Span&lt;RAJA::SparseIterator, long&gt;, RAJA::Span&lt;RAJA::SparseIterator, long&gt; &gt;, camp::tuple&lt;&gt;, camp::resources::v1::Host, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#5}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1, auto:2)#6}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#7}&gt;&amp;&gt;(RAJA::internal::LoopData&lt;camp::tuple&lt;RAJA::Span&lt;RAJA::SparseIterator, long&gt;, RAJA::Span&lt;RAJA::SparseIterator, long&gt; &gt;, camp::tuple&lt;&gt;, camp::resources::v1::Host, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#5}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1, auto:2)#6}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#7}&gt;&amp;)" v="0"/>
+    <Procedure i="31042" n="RAJA::internal::StatementExecutor&lt;RAJA::statement::Lambda&lt;0l, camp::list&lt;RAJA::internal::LambdaArg&lt;RAJA::internal::lambda_arg_seg_t, 0l&gt; &gt; &gt;, RAJA::internal::LoopTypes&lt;camp::list&lt;long, void&gt;, camp::list&lt;long, void&gt; &gt; &gt;::exec&lt;RAJA::internal::LoopData&lt;camp::tuple&lt;RAJA::Span&lt;RAJA::SparseIterator, long&gt;, RAJA::Span&lt;RAJA::SparseIterator, long&gt; &gt;, camp::tuple&lt;&gt;, camp::resources::v1::Host, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#5}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1, auto:2)#6}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#7}&gt;&amp;&gt;(RAJA::internal::LoopData&lt;camp::tuple&lt;RAJA::Span&lt;RAJA::SparseIterator, long&gt;, RAJA::Span&lt;RAJA::SparseIterator, long&gt; &gt;, camp::tuple&lt;&gt;, camp::resources::v1::Host, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#5}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1, auto:2)#6}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#7}&gt;&amp;)" v="0"/>
+    <Procedure i="31043" n="" v="0"/>
+    <Procedure i="31044" n="RAJA::internal::invoke_lambda_with_args&lt;0l, RAJA::internal::LoopTypes&lt;camp::list&lt;long, void&gt;, camp::list&lt;long, void&gt; &gt;, RAJA::internal::LoopData&lt;camp::tuple&lt;RAJA::Span&lt;RAJA::SparseIterator, long&gt;, RAJA::Span&lt;RAJA::SparseIterator, long&gt; &gt;, camp::tuple&lt;&gt;, camp::resources::v1::Host, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#5}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1, auto:2)#6}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#7}&gt;&amp;, RAJA::internal::LambdaArg&lt;RAJA::internal::lambda_arg_seg_t, 0l&gt; &gt;(RAJA::internal::LoopData&lt;camp::tuple&lt;RAJA::Span&lt;RAJA::SparseIterator, long&gt;, RAJA::Span&lt;RAJA::SparseIterator, long&gt; &gt;, camp::tuple&lt;&gt;, camp::resources::v1::Host, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#5}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1, auto:2)#6}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#7}&gt;&amp;, camp::list&lt;RAJA::internal::LambdaArg&lt;RAJA::internal::lambda_arg_seg_t, 0l&gt; &gt; const&amp;)" v="0"/>
+    <Procedure i="31057" n="GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#5}::operator()&lt;long&gt;(long) const" v="0"/>
+    <Procedure i="31060" n="RAJA::internal::ViewBase&lt;double, double*, RAJA::detail::LayoutBase_impl&lt;camp::int_seq&lt;long, 0l&gt;, long, -1l&gt; &gt;::operator()&lt;long&gt;(long) const" v="0"/>
+    <Procedure i="31061" n="" v="0"/>
+    <Procedure i="31062" n="RAJA::internal::view_make_return_value&lt;double, long, RAJA::detail::LayoutBase_impl&lt;camp::int_seq&lt;long, 0l&gt;, long, -1l&gt;, double*, long&gt;(RAJA::detail::LayoutBase_impl&lt;camp::int_seq&lt;long, 0l&gt;, long, -1l&gt; const&amp;, double* const&amp;, long const&amp;)" v="0"/>
+    <Procedure i="31064" n="RAJA::internal::detail::ViewReturnHelper&lt;camp::int_seq&lt;long&gt;, camp::list&lt;long&gt;, double, double*, long, RAJA::detail::LayoutBase_impl&lt;camp::int_seq&lt;long, 0l&gt;, long, -1l&gt; &gt;::make_return(RAJA::detail::LayoutBase_impl&lt;camp::int_seq&lt;long, 0l&gt;, long, -1l&gt; const&amp;, double* const&amp;, long const&amp;)" v="0"/>
+    <Procedure i="31066" n="RAJA::detail::LayoutBase_impl&lt;camp::int_seq&lt;long, 0l&gt;, long, -1l&gt;::operator()&lt;long&gt;(long) const" v="0"/>
+    <Procedure i="31069" n="RAJA::internal::StatementListExecutor&lt;1l, 3l, camp::list&lt;RAJA::statement::Lambda&lt;0l, camp::list&lt;RAJA::internal::LambdaArg&lt;RAJA::internal::lambda_arg_seg_t, 0l&gt; &gt; &gt;, RAJA::statement::For&lt;1l, RAJA::policy::loop::loop_exec, RAJA::statement::Lambda&lt;1l&gt; &gt;, RAJA::statement::Lambda&lt;2l, camp::list&lt;RAJA::internal::LambdaArg&lt;RAJA::internal::lambda_arg_seg_t, 0l&gt; &gt; &gt; &gt;, RAJA::internal::LoopTypes&lt;camp::list&lt;long, void&gt;, camp::list&lt;long, void&gt; &gt; &gt;::exec&lt;RAJA::internal::LoopData&lt;camp::tuple&lt;RAJA::Span&lt;RAJA::SparseIterator, long&gt;, RAJA::Span&lt;RAJA::SparseIterator, long&gt; &gt;, camp::tuple&lt;&gt;, camp::resources::v1::Host, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#5}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1, auto:2)#6}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#7}&gt;&amp;&gt;(RAJA::internal::LoopData&lt;camp::tuple&lt;RAJA::Span&lt;RAJA::SparseIterator, long&gt;, RAJA::Span&lt;RAJA::SparseIterator, long&gt; &gt;, camp::tuple&lt;&gt;, camp::resources::v1::Host, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#5}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1, auto:2)#6}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#7}&gt;&amp;)" v="0"/>
+    <Procedure i="31071" n="RAJA::internal::StatementExecutor&lt;RAJA::statement::For&lt;1l, RAJA::policy::loop::loop_exec, RAJA::statement::Lambda&lt;1l&gt; &gt;, RAJA::internal::LoopTypes&lt;camp::list&lt;long, void&gt;, camp::list&lt;long, void&gt; &gt; &gt;::exec&lt;RAJA::internal::LoopData&lt;camp::tuple&lt;RAJA::Span&lt;RAJA::SparseIterator, long&gt;, RAJA::Span&lt;RAJA::SparseIterator, long&gt; &gt;, camp::tuple&lt;&gt;, camp::resources::v1::Host, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#5}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1, auto:2)#6}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#7}&gt;&amp;&gt;(RAJA::internal::LoopData&lt;camp::tuple&lt;RAJA::Span&lt;RAJA::SparseIterator, long&gt;, RAJA::Span&lt;RAJA::SparseIterator, long&gt; &gt;, camp::tuple&lt;&gt;, camp::resources::v1::Host, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#5}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1, auto:2)#6}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#7}&gt;&amp;)" v="0"/>
+    <Procedure i="31073" n="RAJA::internal::segment_length&lt;1l, RAJA::internal::LoopData&lt;camp::tuple&lt;RAJA::Span&lt;RAJA::SparseIterator, long&gt;, RAJA::Span&lt;RAJA::SparseIterator, long&gt; &gt;, camp::tuple&lt;&gt;, camp::resources::v1::Host, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#5}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1, auto:2)#6}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#7}&gt; &gt;(RAJA::internal::LoopData&lt;camp::tuple&lt;RAJA::Span&lt;RAJA::SparseIterator, long&gt;, RAJA::Span&lt;RAJA::SparseIterator, long&gt; &gt;, camp::tuple&lt;&gt;, camp::resources::v1::Host, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#5}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1, auto:2)#6}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#7}&gt; const&amp;)" v="0"/>
+    <Procedure i="31081" n="RAJA::SparseIterator::operator-(RAJA::SparseIterator)" v="0"/>
+    <Procedure i="31086" n="RAJA::policy::loop::forall_impl&lt;RAJA::TypedRangeSegment&lt;long, long&gt;, RAJA::internal::ForWrapper&lt;1l, RAJA::internal::LoopData&lt;camp::tuple&lt;RAJA::Span&lt;RAJA::SparseIterator, long&gt;, RAJA::Span&lt;RAJA::SparseIterator, long&gt; &gt;, camp::tuple&lt;&gt;, camp::resources::v1::Host, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#5}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1, auto:2)#6}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#7}&gt;&amp;, RAJA::internal::LoopTypes&lt;camp::list&lt;long, long&gt;, camp::list&lt;long, long&gt; &gt;, RAJA::statement::Lambda&lt;1l&gt; &gt;&amp;, camp::resources::v1::Host, RAJA::expt::ForallParamPack&lt;&gt; &gt;(camp::resources::v1::Host, RAJA::policy::loop::loop_exec const&amp;, RAJA::TypedRangeSegment&lt;long, long&gt;&amp;&amp;, RAJA::internal::ForWrapper&lt;1l, RAJA::internal::LoopData&lt;camp::tuple&lt;RAJA::Span&lt;RAJA::SparseIterator, long&gt;, RAJA::Span&lt;RAJA::SparseIterator, long&gt; &gt;, camp::tuple&lt;&gt;, camp::resources::v1::Host, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#5}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1, auto:2)#6}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#7}&gt;&amp;, RAJA::internal::LoopTypes&lt;camp::list&lt;long, long&gt;, camp::list&lt;long, long&gt; &gt;, RAJA::statement::Lambda&lt;1l&gt; &gt;&amp;, RAJA::expt::ForallParamPack&lt;&gt;)" v="0"/>
+    <Procedure i="31091" n="RAJA::internal::ForWrapper&lt;1l, RAJA::internal::LoopData&lt;camp::tuple&lt;RAJA::Span&lt;RAJA::SparseIterator, long&gt;, RAJA::Span&lt;RAJA::SparseIterator, long&gt; &gt;, camp::tuple&lt;&gt;, camp::resources::v1::Host, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#5}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1, auto:2)#6}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#7}&gt;&amp;, RAJA::internal::LoopTypes&lt;camp::list&lt;long, long&gt;, camp::list&lt;long, long&gt; &gt;, RAJA::statement::Lambda&lt;1l&gt; &gt;::operator()&lt;long&gt;(long)" v="0"/>
+    <Procedure i="31093" n="RAJA::internal::LoopData&lt;camp::tuple&lt;RAJA::Span&lt;RAJA::SparseIterator, long&gt;, RAJA::Span&lt;RAJA::SparseIterator, long&gt; &gt;, camp::tuple&lt;&gt;, camp::resources::v1::Host, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#5}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1, auto:2)#6}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#7}&gt;::assign_offset&lt;1l, , long&gt;(long const&amp;)" v="0"/>
+    <Procedure i="31094" n="&lt;inline&gt;" v="0"/>
+    <Procedure i="31102" n="RAJA::internal::GenericWrapper&lt;RAJA::internal::LoopData&lt;camp::tuple&lt;RAJA::Span&lt;RAJA::SparseIterator, long&gt;, RAJA::Span&lt;RAJA::SparseIterator, long&gt; &gt;, camp::tuple&lt;&gt;, camp::resources::v1::Host, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#5}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1, auto:2)#6}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#7}&gt;&amp;, RAJA::internal::LoopTypes&lt;camp::list&lt;long, long&gt;, camp::list&lt;long, long&gt; &gt;, RAJA::statement::Lambda&lt;1l&gt; &gt;::exec()" v="0"/>
+    <Procedure i="31104" n="RAJA::internal::execute_statement_list&lt;camp::list&lt;RAJA::statement::Lambda&lt;1l&gt; &gt;, RAJA::internal::LoopTypes&lt;camp::list&lt;long, long&gt;, camp::list&lt;long, long&gt; &gt;, RAJA::internal::LoopData&lt;camp::tuple&lt;RAJA::Span&lt;RAJA::SparseIterator, long&gt;, RAJA::Span&lt;RAJA::SparseIterator, long&gt; &gt;, camp::tuple&lt;&gt;, camp::resources::v1::Host, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#5}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1, auto:2)#6}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#7}&gt;&amp;&gt;(RAJA::internal::LoopData&lt;camp::tuple&lt;RAJA::Span&lt;RAJA::SparseIterator, long&gt;, RAJA::Span&lt;RAJA::SparseIterator, long&gt; &gt;, camp::tuple&lt;&gt;, camp::resources::v1::Host, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#5}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1, auto:2)#6}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#7}&gt;&amp;)" v="0"/>
+    <Procedure i="31106" n="RAJA::internal::StatementListExecutor&lt;0l, 1l, camp::list&lt;RAJA::statement::Lambda&lt;1l&gt; &gt;, RAJA::internal::LoopTypes&lt;camp::list&lt;long, long&gt;, camp::list&lt;long, long&gt; &gt; &gt;::exec&lt;RAJA::internal::LoopData&lt;camp::tuple&lt;RAJA::Span&lt;RAJA::SparseIterator, long&gt;, RAJA::Span&lt;RAJA::SparseIterator, long&gt; &gt;, camp::tuple&lt;&gt;, camp::resources::v1::Host, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#5}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1, auto:2)#6}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#7}&gt;&amp;&gt;(RAJA::internal::LoopData&lt;camp::tuple&lt;RAJA::Span&lt;RAJA::SparseIterator, long&gt;, RAJA::Span&lt;RAJA::SparseIterator, long&gt; &gt;, camp::tuple&lt;&gt;, camp::resources::v1::Host, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#5}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1, auto:2)#6}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#7}&gt;&amp;)" v="0"/>
+    <Procedure i="31108" n="RAJA::internal::StatementExecutor&lt;RAJA::statement::Lambda&lt;1l&gt;, RAJA::internal::LoopTypes&lt;camp::list&lt;long, long&gt;, camp::list&lt;long, long&gt; &gt; &gt;::exec&lt;RAJA::internal::LoopData&lt;camp::tuple&lt;RAJA::Span&lt;RAJA::SparseIterator, long&gt;, RAJA::Span&lt;RAJA::SparseIterator, long&gt; &gt;, camp::tuple&lt;&gt;, camp::resources::v1::Host, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#5}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1, auto:2)#6}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#7}&gt;&amp;&gt;(RAJA::internal::LoopData&lt;camp::tuple&lt;RAJA::Span&lt;RAJA::SparseIterator, long&gt;, RAJA::Span&lt;RAJA::SparseIterator, long&gt; &gt;, camp::tuple&lt;&gt;, camp::resources::v1::Host, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#5}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1, auto:2)#6}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#7}&gt;&amp;)" v="0"/>
+    <Procedure i="31110" n="RAJA::internal::invoke_lambda&lt;1l, RAJA::internal::LoopTypes&lt;camp::list&lt;long, long&gt;, camp::list&lt;long, long&gt; &gt;, RAJA::internal::LoopData&lt;camp::tuple&lt;RAJA::Span&lt;RAJA::SparseIterator, long&gt;, RAJA::Span&lt;RAJA::SparseIterator, long&gt; &gt;, camp::tuple&lt;&gt;, camp::resources::v1::Host, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#5}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1, auto:2)#6}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#7}&gt;&amp;, 0l, 1l&gt;(RAJA::internal::LoopData&lt;camp::tuple&lt;RAJA::Span&lt;RAJA::SparseIterator, long&gt;, RAJA::Span&lt;RAJA::SparseIterator, long&gt; &gt;, camp::tuple&lt;&gt;, camp::resources::v1::Host, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#5}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1, auto:2)#6}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#7}&gt;&amp;, camp::int_seq&lt;long, 0l, 1l&gt; const&amp;, camp::int_seq&lt;long&gt; const&amp;)" v="0"/>
+    <Procedure i="31112" n="RAJA::internal::StatementExecutor&lt;RAJA::statement::Lambda&lt;1l, camp::list&lt;RAJA::internal::LambdaArg&lt;RAJA::internal::lambda_arg_seg_t, 0l&gt;, RAJA::internal::LambdaArg&lt;RAJA::internal::lambda_arg_seg_t, 1l&gt; &gt;, camp::list&lt;&gt; &gt;, RAJA::internal::LoopTypes&lt;camp::list&lt;long, long&gt;, camp::list&lt;long, long&gt; &gt; &gt;::exec&lt;RAJA::internal::LoopData&lt;camp::tuple&lt;RAJA::Span&lt;RAJA::SparseIterator, long&gt;, RAJA::Span&lt;RAJA::SparseIterator, long&gt; &gt;, camp::tuple&lt;&gt;, camp::resources::v1::Host, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#5}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1, auto:2)#6}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#7}&gt;&amp;&gt;(RAJA::internal::LoopData&lt;camp::tuple&lt;RAJA::Span&lt;RAJA::SparseIterator, long&gt;, RAJA::Span&lt;RAJA::SparseIterator, long&gt; &gt;, camp::tuple&lt;&gt;, camp::resources::v1::Host, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#5}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1, auto:2)#6}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#7}&gt;&amp;)" v="0"/>
+    <Procedure i="31114" n="RAJA::internal::invoke_lambda_with_args&lt;1l, RAJA::internal::LoopTypes&lt;camp::list&lt;long, long&gt;, camp::list&lt;long, long&gt; &gt;, RAJA::internal::LoopData&lt;camp::tuple&lt;RAJA::Span&lt;RAJA::SparseIterator, long&gt;, RAJA::Span&lt;RAJA::SparseIterator, long&gt; &gt;, camp::tuple&lt;&gt;, camp::resources::v1::Host, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#5}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1, auto:2)#6}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#7}&gt;&amp;, RAJA::internal::LambdaArg&lt;RAJA::internal::lambda_arg_seg_t, 0l&gt;, RAJA::internal::LambdaArg&lt;RAJA::internal::lambda_arg_seg_t, 1l&gt; &gt;(RAJA::internal::LoopData&lt;camp::tuple&lt;RAJA::Span&lt;RAJA::SparseIterator, long&gt;, RAJA::Span&lt;RAJA::SparseIterator, long&gt; &gt;, camp::tuple&lt;&gt;, camp::resources::v1::Host, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#5}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1, auto:2)#6}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#7}&gt;&amp;, camp::list&lt;RAJA::internal::LambdaArg&lt;RAJA::internal::lambda_arg_seg_t, 0l&gt;, RAJA::internal::LambdaArg&lt;RAJA::internal::lambda_arg_seg_t, 1l&gt; &gt; const&amp;)" v="0"/>
+    <Procedure i="31118" n="RAJA::internal::LambdaArgSwitchboard&lt;RAJA::internal::LoopTypes&lt;camp::list&lt;long, long&gt;, camp::list&lt;long, long&gt; &gt;, RAJA::internal::LambdaArg&lt;RAJA::internal::lambda_arg_seg_t, 1l&gt; &gt;::extract&lt;RAJA::internal::LoopData&lt;camp::tuple&lt;RAJA::Span&lt;RAJA::SparseIterator, long&gt;, RAJA::Span&lt;RAJA::SparseIterator, long&gt; &gt;, camp::tuple&lt;&gt;, camp::resources::v1::Host, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#5}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1, auto:2)#6}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#7}&gt;&amp;&gt;(RAJA::internal::LoopData&lt;camp::tuple&lt;RAJA::Span&lt;RAJA::SparseIterator, long&gt;, RAJA::Span&lt;RAJA::SparseIterator, long&gt; &gt;, camp::tuple&lt;&gt;, camp::resources::v1::Host, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#5}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1, auto:2)#6}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#7}&gt;&amp;)" v="0"/>
+    <Procedure i="31120" n="RAJA::internal::LambdaSegExtractor&lt;long, 1l&gt;::extract&lt;RAJA::internal::LoopData&lt;camp::tuple&lt;RAJA::Span&lt;RAJA::SparseIterator, long&gt;, RAJA::Span&lt;RAJA::SparseIterator, long&gt; &gt;, camp::tuple&lt;&gt;, camp::resources::v1::Host, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#5}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1, auto:2)#6}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#7}&gt;&amp;&gt;(RAJA::internal::LoopData&lt;camp::tuple&lt;RAJA::Span&lt;RAJA::SparseIterator, long&gt;, RAJA::Span&lt;RAJA::SparseIterator, long&gt; &gt;, camp::tuple&lt;&gt;, camp::resources::v1::Host, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#5}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1, auto:2)#6}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#7}&gt;&amp;)" v="0"/>
+    <Procedure i="31125" n="RAJA::SparseIterator::operator[](unsigned long)" v="0"/>
+    <Procedure i="31129" n="RAJA::internal::LambdaArgSwitchboard&lt;RAJA::internal::LoopTypes&lt;camp::list&lt;long, long&gt;, camp::list&lt;long, long&gt; &gt;, RAJA::internal::LambdaArg&lt;RAJA::internal::lambda_arg_seg_t, 0l&gt; &gt;::extract&lt;RAJA::internal::LoopData&lt;camp::tuple&lt;RAJA::Span&lt;RAJA::SparseIterator, long&gt;, RAJA::Span&lt;RAJA::SparseIterator, long&gt; &gt;, camp::tuple&lt;&gt;, camp::resources::v1::Host, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#5}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1, auto:2)#6}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#7}&gt;&amp;&gt;(RAJA::internal::LoopData&lt;camp::tuple&lt;RAJA::Span&lt;RAJA::SparseIterator, long&gt;, RAJA::Span&lt;RAJA::SparseIterator, long&gt; &gt;, camp::tuple&lt;&gt;, camp::resources::v1::Host, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#5}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1, auto:2)#6}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#7}&gt;&amp;)" v="0"/>
+    <Procedure i="31131" n="RAJA::internal::LambdaSegExtractor&lt;long, 0l&gt;::extract&lt;RAJA::internal::LoopData&lt;camp::tuple&lt;RAJA::Span&lt;RAJA::SparseIterator, long&gt;, RAJA::Span&lt;RAJA::SparseIterator, long&gt; &gt;, camp::tuple&lt;&gt;, camp::resources::v1::Host, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#5}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1, auto:2)#6}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#7}&gt;&amp;&gt;(RAJA::internal::LoopData&lt;camp::tuple&lt;RAJA::Span&lt;RAJA::SparseIterator, long&gt;, RAJA::Span&lt;RAJA::SparseIterator, long&gt; &gt;, camp::tuple&lt;&gt;, camp::resources::v1::Host, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#5}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1, auto:2)#6}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#7}&gt;&amp;)" v="0"/>
+    <Procedure i="31133" n="RAJA::Span&lt;RAJA::SparseIterator, long&gt;::begin()" v="0"/>
+    <Procedure i="31145" n="RAJA::TypedRangeSegment&lt;long, long&gt;::TypedRangeSegment(long, long)" v="0"/>
+    <Procedure i="31148" n="RAJA::internal::StatementListExecutor&lt;2l, 3l, camp::list&lt;RAJA::statement::Lambda&lt;0l, camp::list&lt;RAJA::internal::LambdaArg&lt;RAJA::internal::lambda_arg_seg_t, 0l&gt; &gt; &gt;, RAJA::statement::For&lt;1l, RAJA::policy::loop::loop_exec, RAJA::statement::Lambda&lt;1l&gt; &gt;, RAJA::statement::Lambda&lt;2l, camp::list&lt;RAJA::internal::LambdaArg&lt;RAJA::internal::lambda_arg_seg_t, 0l&gt; &gt; &gt; &gt;, RAJA::internal::LoopTypes&lt;camp::list&lt;long, void&gt;, camp::list&lt;long, void&gt; &gt; &gt;::exec&lt;RAJA::internal::LoopData&lt;camp::tuple&lt;RAJA::Span&lt;RAJA::SparseIterator, long&gt;, RAJA::Span&lt;RAJA::SparseIterator, long&gt; &gt;, camp::tuple&lt;&gt;, camp::resources::v1::Host, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#5}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1, auto:2)#6}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#7}&gt;&amp;&gt;(RAJA::internal::LoopData&lt;camp::tuple&lt;RAJA::Span&lt;RAJA::SparseIterator, long&gt;, RAJA::Span&lt;RAJA::SparseIterator, long&gt; &gt;, camp::tuple&lt;&gt;, camp::resources::v1::Host, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#5}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1, auto:2)#6}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#7}&gt;&amp;)" v="0"/>
+    <Procedure i="31150" n="RAJA::internal::StatementExecutor&lt;RAJA::statement::Lambda&lt;2l, camp::list&lt;RAJA::internal::LambdaArg&lt;RAJA::internal::lambda_arg_seg_t, 0l&gt; &gt; &gt;, RAJA::internal::LoopTypes&lt;camp::list&lt;long, void&gt;, camp::list&lt;long, void&gt; &gt; &gt;::exec&lt;RAJA::internal::LoopData&lt;camp::tuple&lt;RAJA::Span&lt;RAJA::SparseIterator, long&gt;, RAJA::Span&lt;RAJA::SparseIterator, long&gt; &gt;, camp::tuple&lt;&gt;, camp::resources::v1::Host, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#5}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1, auto:2)#6}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#7}&gt;&amp;&gt;(RAJA::internal::LoopData&lt;camp::tuple&lt;RAJA::Span&lt;RAJA::SparseIterator, long&gt;, RAJA::Span&lt;RAJA::SparseIterator, long&gt; &gt;, camp::tuple&lt;&gt;, camp::resources::v1::Host, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#5}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1, auto:2)#6}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#7}&gt;&amp;)" v="0"/>
+    <Procedure i="31152" n="RAJA::internal::invoke_lambda_with_args&lt;2l, RAJA::internal::LoopTypes&lt;camp::list&lt;long, void&gt;, camp::list&lt;long, void&gt; &gt;, RAJA::internal::LoopData&lt;camp::tuple&lt;RAJA::Span&lt;RAJA::SparseIterator, long&gt;, RAJA::Span&lt;RAJA::SparseIterator, long&gt; &gt;, camp::tuple&lt;&gt;, camp::resources::v1::Host, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#5}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1, auto:2)#6}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#7}&gt;&amp;, RAJA::internal::LambdaArg&lt;RAJA::internal::lambda_arg_seg_t, 0l&gt; &gt;(RAJA::internal::LoopData&lt;camp::tuple&lt;RAJA::Span&lt;RAJA::SparseIterator, long&gt;, RAJA::Span&lt;RAJA::SparseIterator, long&gt; &gt;, camp::tuple&lt;&gt;, camp::resources::v1::Host, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#5}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1, auto:2)#6}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#7}&gt;&amp;, camp::list&lt;RAJA::internal::LambdaArg&lt;RAJA::internal::lambda_arg_seg_t, 0l&gt; &gt; const&amp;)" v="0"/>
+    <Procedure i="31154" n="RAJA::internal::LambdaArgSwitchboard&lt;RAJA::internal::LoopTypes&lt;camp::list&lt;long, void&gt;, camp::list&lt;long, void&gt; &gt;, RAJA::internal::LambdaArg&lt;RAJA::internal::lambda_arg_seg_t, 0l&gt; &gt;::extract&lt;RAJA::internal::LoopData&lt;camp::tuple&lt;RAJA::Span&lt;RAJA::SparseIterator, long&gt;, RAJA::Span&lt;RAJA::SparseIterator, long&gt; &gt;, camp::tuple&lt;&gt;, camp::resources::v1::Host, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#5}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1, auto:2)#6}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#7}&gt;&amp;&gt;(RAJA::internal::LoopData&lt;camp::tuple&lt;RAJA::Span&lt;RAJA::SparseIterator, long&gt;, RAJA::Span&lt;RAJA::SparseIterator, long&gt; &gt;, camp::tuple&lt;&gt;, camp::resources::v1::Host, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#5}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1, auto:2)#6}, GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#7}&gt;&amp;)" v="0"/>
+    <Procedure i="31165" n="GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1)#7}::operator()&lt;long&gt;(long) const" v="0"/>
+    <Procedure i="31167" n="&lt;inline&gt;" v="0"/>
+    <Procedure i="31170" n="RAJA::SparseView&lt;double, 2ul, RAJA::DIAG&lt;double, 2ul&gt; &gt;::operator()&lt;long&gt;(long, long)" v="0"/>
+    <Procedure i="31172" n="RAJA::DIAG&lt;double, 2ul&gt;::operator()&lt;long, long&gt;(camp::tuple&lt;long, long&gt;)" v="0"/>
+    <Procedure i="31180" n="RAJA::DIAG&lt;double, 2ul&gt;::is_expected&lt;0l, long, long&gt;(camp::tuple&lt;long, long&gt;) const" v="0"/>
+    <Procedure i="31187" n="std::vector&lt;std::vector&lt;long, std::allocator&lt;long&gt; &gt;, std::allocator&lt;std::vector&lt;long, std::allocator&lt;long&gt; &gt; &gt; &gt;::operator[](unsigned long) const" v="0"/>
+    <Procedure i="30162" n="GauSei_dispatch&lt;RAJA::DIAG&gt;(int, double, int, int, int)::{lambda(auto:1, auto:2)#6}::operator()&lt;long, long&gt;(long, long) const" v="0x416380"/>
+    <Procedure i="30167" n="&lt;inline&gt;" v="0"/>
+    <Procedure i="30182" n="&lt;inline&gt;" v="0"/>
+    <Procedure i="30194" n="std::vector&lt;long, std::allocator&lt;long&gt; &gt;::operator[](unsigned long) const" v="0"/>
+    <Procedure i="30197" n="RAJA::DIAG&lt;double, 2ul&gt;::is_expected&lt;1l, long, long&gt;(camp::tuple&lt;long, long&gt;) const" v="0"/>
+    <Procedure i="30201" n="RAJA::DIAG&lt;double, 2ul&gt;::is_post_diagonal&lt;0l, long, long&gt;(camp::tuple&lt;long, long&gt;) const" v="0"/>
+    <Procedure i="30207" n="RAJA::DIAG&lt;double, 2ul&gt;::is_post_diagonal&lt;1l, long, long&gt;(camp::tuple&lt;long, long&gt;) const" v="0"/>
+    <Procedure i="27483" n="main" v="0x404050"/>
+    <Procedure i="37114" n="&lt;unknown procedure&gt; 0xe34d [libmonitor.so.0.0.0]" v="0"/>
+  </ProcedureTable>
+  <Info/>
+</SecHeader>
+<SecCallPathProfileData>
+<M n="2" v="2.94601"/>
+<PF i="2" s="37114" l="0" lm="37112" f="37113" n="37114">
+<M n="2" v="2.94601"/>
+<C i="3" s="37115" l="0" v="0xe34e">
+<M n="2" v="2.94601"/>
+<PF i="4" s="27483" l="347" lm="2" f="27482" n="27483">
+<M n="2" v="2.94601"/>
+<C i="5" s="27506" l="385" v="0x4041d3">
+<M n="2" v="2.94601"/>
+<PF i="6" s="30332" l="162" lm="2" f="27482" n="30332">
+<M n="2" v="2.94601"/>
+<C i="7" s="30375" l="165" v="0x416681">
+<M n="2" v="0.01162"/>
+<PF i="8" s="24181" l="115" lm="2" f="23093" n="24181">
+<M n="2" v="0.01162"/><M n="3" v="0.005916"/>
+<L i="9" s="24259" l="144" f="23093" v="0x40cd53">
+<M n="2" v="0.005916"/><M n="3" v="0.005916"/>
+<S i="10" s="24262" l="146">
+<M n="2" v="0.005916"/><M n="3" v="0.005916"/>
+</S>
+</L>
+<Pr i="11" s="24532" l="158" lm="2" f="23093" n="24532" a="1">
+<M n="2" v="0.005704"/>
+<Pr i="12" s="24533" l="112" lm="2" f="23093" n="24533" a="1">
+<M n="2" v="0.005704"/>
+<C i="13" s="24538" l="112" v="0x40cf7a">
+<M n="2" v="0.005704"/>
+<PF i="14" s="23991" l="101" lm="2" f="23093" n="23991">
+<M n="2" v="0.005704"/>
+<C i="15" s="23999" l="107" v="0x40c9f5">
+<M n="2" v="0.005704"/>
+<PF i="16" s="23462" l="82" lm="2" f="23093" n="23462">
+<M n="2" v="0.005704"/>
+<C i="17" s="23475" l="94" v="0x40c407">
+<M n="2" v="0.005704"/>
+<PF i="18" s="20004" l="23" lm="2" f="19861" n="20004">
+<M n="2" v="0.005704"/>
+<Pr i="19" s="20052" l="25" lm="2" f="19861" n="20052" a="1">
+<M n="2" v="0.005704"/>
+<Pr i="20" s="20053" l="53" lm="2" f="19861" n="20053" a="1">
+<M n="2" v="0.005704"/>
+<Pr i="21" s="20052" l="57" lm="2" f="19861" n="20052" a="1">
+<M n="2" v="0.005704"/>
+<Pr i="22" s="20099" l="78" lm="2" f="19861" n="20099" a="1">
+<M n="2" v="0.005704"/>
+<Pr i="23" s="20052" l="98" lm="2" f="19861" n="20052" a="1">
+<M n="2" v="0.005704"/>
+<Pr i="24" s="20185" l="4899" lm="2" f="595" n="20185" a="1">
+<M n="2" v="0.005704"/>
+<Pr i="25" s="1617" l="4899" lm="2" f="595" n="1617" a="1">
+<M n="2" v="0.005704"/>
+<Pr i="26" s="20187" l="1980" lm="2" f="595" n="20187" a="1">
+<M n="2" v="0.005704"/>
+<Pr i="27" s="20190" l="1977" lm="2" f="595" n="20190" a="1">
+<M n="2" v="0.005704"/>
+<C i="28" s="20193" l="1979" v="0x40bf1d">
+<M n="2" v="0.005704"/>
+<PF i="29" s="1603" l="1950" lm="2" f="595" n="1603">
+<M n="2" v="0.005704"/>
+<L i="30" s="1608" l="1954" f="595" v="0x40baf2">
+<M n="2" v="0.005704"/>
+<Pr i="31" s="1617" l="1963" lm="2" f="595" n="1617" a="1">
+<M n="2" v="0.005704"/>
+<Pr i="32" s="1618" l="1928" lm="2" f="595" n="1618" a="1">
+<M n="2" v="0.005704"/>
+<Pr i="33" s="1617" l="1931" lm="2" f="595" n="1617" a="1">
+<M n="2" v="0.005704"/>
+<Pr i="34" s="1632" l="1909" lm="2" f="595" n="1632" a="1">
+<M n="2" v="0.005704"/>
+<L i="35" s="1633" l="1912" f="595" v="0x40bbb0">
+<M n="2" v="0.005704"/>
+<Pr i="36" s="1617" l="1916" lm="2" f="595" n="1617" a="1">
+<M n="2" v="0.005704"/>
+<Pr i="37" s="1659" l="182" lm="2" f="1659" n="1659" a="1">
+<M n="2" v="0.005704"/>
+<Pr i="38" s="1660" l="182" lm="2" f="1659" n="1660" a="1">
+<M n="2" v="0.005704"/>
+<Pr i="39" s="1661" l="197" lm="2" f="1661" n="1661" a="1">
+<M n="2" v="0.005704"/><M n="3" v="0.005704"/>
+<S i="40" s="1663" l="198">
+<M n="2" v="0.005704"/><M n="3" v="0.005704"/>
+</S>
+</Pr>
+</Pr>
+</Pr>
+</Pr>
+</L>
+</Pr>
+</Pr>
+</Pr>
+</Pr>
+</L>
+</PF>
+</C>
+</Pr>
+</Pr>
+</Pr>
+</Pr>
+</Pr>
+</Pr>
+</Pr>
+</Pr>
+</Pr>
+</PF>
+</C>
+</PF>
+</C>
+</PF>
+</C>
+</Pr>
+</Pr>
+</PF>
+</C>
+<L i="41" s="30488" l="324" f="27482" v="0x416c00">
+<M n="2" v="2.93439"/>
+<Pr i="42" s="30490" l="326" lm="2" f="27482" n="30490" a="1">
+<M n="2" v="2.93439"/>
+<Pr i="43" s="30491" l="346" lm="2" f="30491" n="30491" a="1">
+<M n="2" v="2.93439"/>
+<Pr i="44" s="30492" l="346" lm="2" f="30491" n="30492" a="1">
+<M n="2" v="2.93439"/>
+<Pr i="45" s="30493" l="302" lm="2" f="30491" n="30493" a="1">
+<M n="2" v="2.93439"/>
+<Pr i="46" s="30492" l="320" lm="2" f="30491" n="30492" a="1">
+<M n="2" v="2.93439"/>
+<Pr i="47" s="30844" l="188" lm="2" f="30844" n="30844" a="1">
+<M n="2" v="2.93439"/>
+<Pr i="48" s="30855" l="189" lm="2" f="30844" n="30855" a="1">
+<M n="2" v="2.93439"/>
+<Pr i="49" s="30856" l="128" lm="2" f="30844" n="30856" a="1">
+<M n="2" v="2.93439"/>
+<Pr i="50" s="30855" l="134" lm="2" f="30844" n="30855" a="1">
+<M n="2" v="0.005953"/>
+<Pr i="51" s="30906" l="155" lm="2" f="30906" n="30906" a="1">
+<M n="2" v="0.005953"/>
+<Pr i="52" s="30908" l="155" lm="2" f="30906" n="30908" a="1">
+<M n="2" v="0.005953"/>
+<Pr i="53" s="30909" l="317" lm="2" f="30909" n="30909" a="1">
+<M n="2" v="0.005953"/>
+<Pr i="54" s="30910" l="317" lm="2" f="30909" n="30910" a="1">
+<M n="2" v="0.005953"/>
+<Pr i="55" s="30911" l="231" lm="2" f="30909" n="30911" a="1">
+<M n="2" v="0.005953"/>
+<Pr i="56" s="30910" l="231" lm="2" f="30909" n="30910" a="1">
+<M n="2" v="0.005953"/>
+<Pr i="57" s="30913" l="105" lm="2" f="30909" n="30913" a="1">
+<M n="2" v="0.005953"/><M n="3" v="0.005953"/>
+<S i="58" s="30914" l="105">
+<M n="2" v="0.005953"/><M n="3" v="0.005953"/>
+</S>
+</Pr>
+</Pr>
+</Pr>
+</Pr>
+</Pr>
+</Pr>
+</Pr>
+</Pr>
+<Pr i="59" s="30855" l="148" lm="2" f="30844" n="30855" a="1">
+<M n="2" v="2.92843"/>
+<Pr i="60" s="31001" l="87" lm="2" f="31001" n="31001" a="1">
+<M n="2" v="2.92843"/>
+<Pr i="61" s="31002" l="87" lm="2" f="31001" n="31002" a="1">
+<M n="2" v="2.92843"/>
+<Pr i="62" s="31003" l="61" lm="2" f="31001" n="31003" a="1">
+<M n="2" v="2.92843"/>
+<Pr i="63" s="31002" l="61" lm="2" f="31001" n="31002" a="1">
+<M n="2" v="2.92843"/>
+<Pr i="64" s="31005" l="101" lm="2" f="31005" n="31005" a="1">
+<M n="2" v="2.92843"/>
+<Pr i="65" s="31019" l="106" lm="2" f="31005" n="31019" a="1">
+<M n="2" v="2.92843"/>
+<Pr i="66" s="31020" l="96" lm="2" f="31020" n="31020" a="1">
+<M n="2" v="2.92843"/>
+<L i="67" s="31022" l="96" f="31020" v="0x416e20">
+<M n="2" v="2.92843"/>
+<Pr i="68" s="31024" l="97" lm="2" f="31020" n="31024" a="1">
+<M n="2" v="2.92843"/>
+<Pr i="69" s="31025" l="72" lm="2" f="31005" n="31025" a="1">
+<M n="2" v="2.92843"/>
+<Pr i="70" s="31019" l="72" lm="2" f="31005" n="31019" a="1">
+<M n="2" v="0.029853"/>
+<Pr i="71" s="31027" l="177" lm="2" f="30906" n="31027" a="1">
+<M n="2" v="0.029853"/>
+<Pr i="72" s="30908" l="177" lm="2" f="30906" n="30908" a="1">
+<M n="2" v="0.029853"/>
+<Pr i="73" s="31032" l="27" lm="2" f="4610" n="31032" a="1">
+<M n="2" v="0.029853"/>
+<C i="74" s="31034" l="27" v="0x416e34">
+<M n="2" v="0.029853"/>
+<PF i="75" s="4609" l="919" lm="2" f="4240" n="4609">
+<M n="2" v="0.029853"/>
+<Pr i="76" s="4610" l="101" lm="2" f="4610" n="4610" a="1">
+<M n="2" v="0.023873"/>
+<L i="77" s="4614" l="101" f="4610" v="0x405ab0">
+<M n="2" v="0.023873"/>
+<Pr i="78" s="4617" l="102" lm="2" f="4610" n="4617" a="1">
+<M n="2" v="0.023873"/>
+<Pr i="79" s="4618" l="83" lm="2" f="4610" n="4618" a="1">
+<M n="2" v="0.023873"/><M n="3" v="0.023873"/>
+<S i="80" s="4619" l="83">
+<M n="2" v="0.011915"/><M n="3" v="0.011915"/>
+</S>
+<S i="81" s="4620" l="84">
+<M n="2" v="0.011958"/><M n="3" v="0.011958"/>
+</S>
+</Pr>
+</Pr>
+</L>
+</Pr>
+<Pr i="82" s="4617" l="101" lm="2" f="4610" n="4617" a="1">
+<M n="2" v="0.00598"/>
+<Pr i="83" s="4622" l="919" lm="2" f="4240" n="4622" a="1">
+<M n="2" v="0.00598"/><M n="3" v="0.00598"/>
+<S i="84" s="4623" l="919">
+<M n="2" v="0.00598"/><M n="3" v="0.00598"/>
+</S>
+</Pr>
+</Pr>
+</PF>
+</C>
+</Pr>
+</Pr>
+</Pr>
+</Pr>
+<Pr i="85" s="31019" l="73" lm="2" f="31005" n="31019" a="1">
+<M n="2" v="2.89858"/>
+<Pr i="86" s="31036" l="241" lm="2" f="30906" n="31036" a="1">
+<M n="2" v="2.89858"/>
+<Pr i="87" s="30908" l="241" lm="2" f="30906" n="30908" a="1">
+<M n="2" v="2.89858"/>
+<Pr i="88" s="31038" l="87" lm="2" f="31001" n="31038" a="1">
+<M n="2" v="2.89858"/>
+<Pr i="89" s="31002" l="87" lm="2" f="31001" n="31002" a="1">
+<M n="2" v="2.89858"/>
+<Pr i="90" s="31040" l="61" lm="2" f="31001" n="31040" a="1">
+<M n="2" v="2.89858"/>
+<Pr i="91" s="31002" l="61" lm="2" f="31001" n="31002" a="1">
+<M n="2" v="0.005981"/>
+<Pr i="92" s="31042" l="305" lm="2" f="31042" n="31042" a="1">
+<M n="2" v="0.005981"/>
+<Pr i="93" s="31043" l="305" lm="2" f="31042" n="31043" a="1">
+<M n="2" v="0.005981"/>
+<Pr i="94" s="31044" l="284" lm="2" f="31042" n="31044" a="1">
+<M n="2" v="0.005981"/>
+<Pr i="95" s="31043" l="284" lm="2" f="31042" n="31043" a="1">
+<M n="2" v="0.005981"/>
+<Pr i="96" s="31057" l="308" lm="2" f="27482" n="31057" a="1">
+<M n="2" v="0.005981"/>
+<Pr i="97" s="30490" l="308" lm="2" f="27482" n="30490" a="1">
+<M n="2" v="0.005981"/>
+<Pr i="98" s="31060" l="599" lm="2" f="31060" n="31060" a="1">
+<M n="2" v="0.005981"/>
+<Pr i="99" s="31061" l="599" lm="2" f="31060" n="31061" a="1">
+<M n="2" v="0.005981"/>
+<Pr i="100" s="31062" l="389" lm="2" f="31060" n="31062" a="1">
+<M n="2" v="0.005981"/>
+<Pr i="101" s="31061" l="389" lm="2" f="31060" n="31061" a="1">
+<M n="2" v="0.005981"/>
+<Pr i="102" s="31064" l="189" lm="2" f="31060" n="31064" a="1">
+<M n="2" v="0.005981"/>
+<Pr i="103" s="31061" l="189" lm="2" f="31060" n="31061" a="1">
+<M n="2" v="0.005981"/>
+<Pr i="104" s="31066" l="187" lm="2" f="31066" n="31066" a="1">
+<M n="2" v="0.005981"/><M n="3" v="0.005981"/>
+<S i="105" s="31067" l="187">
+<M n="2" v="0.005981"/><M n="3" v="0.005981"/>
+</S>
+</Pr>
+</Pr>
+</Pr>
+</Pr>
+</Pr>
+</Pr>
+</Pr>
+</Pr>
+</Pr>
+</Pr>
+</Pr>
+</Pr>
+</Pr>
+</Pr>
+<Pr i="106" s="31002" l="64" lm="2" f="31001" n="31002" a="1">
+<M n="2" v="2.8926"/>
+<Pr i="107" s="31069" l="61" lm="2" f="31001" n="31069" a="1">
+<M n="2" v="2.8926"/>
+<Pr i="108" s="31002" l="61" lm="2" f="31001" n="31002" a="1">
+<M n="2" v="2.82095"/>
+<Pr i="109" s="31071" l="101" lm="2" f="31005" n="31071" a="1">
+<M n="2" v="2.82095"/>
+<Pr i="110" s="31019" l="101" lm="2" f="31005" n="31019" a="1">
+<M n="2" v="0.047794"/>
+<Pr i="111" s="31073" l="224" lm="2" f="30906" n="31073" a="1">
+<M n="2" v="0.047794"/>
+<Pr i="112" s="30908" l="224" lm="2" f="30906" n="30908" a="1">
+<M n="2" v="0.047794"/>
+<Pr i="113" s="31081" l="24" lm="2" f="4610" n="31081" a="1">
+<M n="2" v="0.047794"/><M n="3" v="0.005991"/>
+<S i="114" s="31082" l="24">
+<M n="2" v="0.005991"/><M n="3" v="0.005991"/>
+</S>
+<C i="115" s="31083" l="24" v="0x416e6f">
+<M n="2" v="0.035822"/>
+<PF i="116" s="22696" l="61" lm="2" f="4610" n="22696">
+<M n="2" v="0.035822"/><M n="3" v="0.035822"/>
+<S i="117" s="22698" l="62">
+<M n="2" v="0.035822"/><M n="3" v="0.035822"/>
+</S>
+</PF>
+</C>
+<C i="118" s="31084" l="24" v="0x416e7c">
+<M n="2" v="0.005981"/>
+<PF i="119" s="22696" l="61" lm="2" f="4610" n="22696">
+<M n="2" v="0.005981"/><M n="3" v="0.005981"/>
+<S i="120" s="22697" l="61">
+<M n="2" v="0.005981"/><M n="3" v="0.005981"/>
+</S>
+</PF>
+</C>
+</Pr>
+</Pr>
+</Pr>
+</Pr>
+<Pr i="121" s="31019" l="106" lm="2" f="31005" n="31019" a="1">
+<M n="2" v="2.76719"/>
+<Pr i="122" s="31086" l="96" lm="2" f="31020" n="31086" a="1">
+<M n="2" v="2.76719"/><M n="3" v="0.155014"/>
+<L i="123" s="31088" l="96" f="31020" v="0x416ea8">
+<M n="2" v="2.76719"/><M n="3" v="0.155014"/>
+<S i="124" s="31089" l="96">
+<M n="2" v="0.155014"/><M n="3" v="0.155014"/>
+</S>
+<Pr i="125" s="31024" l="97" lm="2" f="31020" n="31024" a="1">
+<M n="2" v="2.61217"/>
+<Pr i="126" s="31091" l="72" lm="2" f="31005" n="31091" a="1">
+<M n="2" v="2.61217"/>
+<Pr i="127" s="31019" l="72" lm="2" f="31005" n="31019" a="1">
+<M n="2" v="0.256486"/>
+<Pr i="128" s="31093" l="177" lm="2" f="30906" n="31093" a="1">
+<M n="2" v="0.256486"/><M n="3" v="0.077485"/>
+<Pr i="129" s="31094" l="164" lm="2" f="30906" n="31094" a="1">
+<M n="2" v="0.077485"/><M n="3" v="0.077485"/>
+<S i="130" s="31096" l="176">
+<M n="2" v="0.077485"/><M n="3" v="0.077485"/>
+</S>
+</Pr>
+<Pr i="131" s="30908" l="177" lm="2" f="30906" n="30908" a="1">
+<M n="2" v="0.179001"/>
+<Pr i="132" s="31032" l="27" lm="2" f="4610" n="31032" a="1">
+<M n="2" v="0.179001"/><M n="3" v="0.089441"/>
+<C i="133" s="31100" l="27" v="0x416ebc">
+<M n="2" v="0.08956"/>
+<PF i="134" s="22699" l="63" lm="2" f="4610" n="22699">
+<M n="2" v="0.08956"/><M n="3" v="0.08956"/>
+<S i="135" s="22700" l="63">
+<M n="2" v="0.011885"/><M n="3" v="0.011885"/>
+</S>
+<S i="136" s="22701" l="65">
+<M n="2" v="0.077675"/><M n="3" v="0.077675"/>
+</S>
+</PF>
+</C>
+<S i="137" s="31100" l="27">
+<M n="2" v="0.089441"/><M n="3" v="0.089441"/>
+</S>
+</Pr>
+</Pr>
+</Pr>
+</Pr>
+<Pr i="138" s="31019" l="73" lm="2" f="31005" n="31019" a="1">
+<M n="2" v="2.35569"/>
+<Pr i="139" s="31102" l="241" lm="2" f="30906" n="31102" a="1">
+<M n="2" v="2.35569"/>
+<Pr i="140" s="30908" l="241" lm="2" f="30906" n="30908" a="1">
+<M n="2" v="2.35569"/>
+<Pr i="141" s="31104" l="87" lm="2" f="31001" n="31104" a="1">
+<M n="2" v="2.35569"/>
+<Pr i="142" s="31002" l="87" lm="2" f="31001" n="31002" a="1">
+<M n="2" v="2.35569"/>
+<Pr i="143" s="31106" l="61" lm="2" f="31001" n="31106" a="1">
+<M n="2" v="2.35569"/>
+<Pr i="144" s="31002" l="61" lm="2" f="31001" n="31002" a="1">
+<M n="2" v="2.35569"/>
+<Pr i="145" s="31108" l="334" lm="2" f="31042" n="31108" a="1">
+<M n="2" v="2.35569"/>
+<Pr i="146" s="31043" l="334" lm="2" f="31042" n="31043" a="1">
+<M n="2" v="2.35569"/>
+<Pr i="147" s="31110" l="319" lm="2" f="31042" n="31110" a="1">
+<M n="2" v="2.35569"/>
+<Pr i="148" s="31043" l="319" lm="2" f="31042" n="31043" a="1">
+<M n="2" v="2.35569"/>
+<Pr i="149" s="31112" l="305" lm="2" f="31042" n="31112" a="1">
+<M n="2" v="2.35569"/>
+<Pr i="150" s="31043" l="305" lm="2" f="31042" n="31043" a="1">
+<M n="2" v="2.35569"/>
+<Pr i="151" s="31114" l="284" lm="2" f="31042" n="31114" a="1">
+<M n="2" v="2.35569"/><M n="3" v="0.083469"/>
+<C i="152" s="31116" l="284" v="0x416eed">
+<M n="2" v="1.69462"/>
+<PF i="153" s="30162" l="311" lm="2" f="27482" n="30162">
+<M n="2" v="1.69462"/><M n="3" v="0.754205"/>
+<S i="154" s="30163" l="311">
+<M n="2" v="0.011878"/><M n="3" v="0.011878"/>
+</S>
+<S i="155" s="30164" l="312">
+<M n="2" v="0.058703"/><M n="3" v="0.058703"/>
+</S>
+<S i="156" s="30165" l="313">
+<M n="2" v="0.005917"/><M n="3" v="0.005917"/>
+</S>
+<S i="157" s="30166" l="314">
+<M n="2" v="0.189826"/><M n="3" v="0.189826"/>
+</S>
+<Pr i="158" s="30167" l="310" lm="2" f="27482" n="30167" a="1">
+<M n="2" v="0.487881"/><M n="3" v="0.487881"/>
+<S i="159" s="30168" l="310">
+<M n="2" v="0.487881"/><M n="3" v="0.487881"/>
+</S>
+</Pr>
+<Pr i="160" s="30490" l="312" lm="2" f="27482" n="30490" a="1">
+<M n="2" v="0.708023"/>
+<Pr i="161" s="31170" l="49" lm="2" f="23093" n="31170" a="1">
+<M n="2" v="0.708023"/>
+<Pr i="162" s="24532" l="49" lm="2" f="23093" n="24532" a="1">
+<M n="2" v="0.708023"/>
+<Pr i="163" s="31172" l="168" lm="2" f="19861" n="31172" a="1">
+<M n="2" v="0.708023"/><M n="3" v="0.392802"/>
+<S i="164" s="30173" l="169">
+<M n="2" v="0.029816"/><M n="3" v="0.029816"/>
+</S>
+<S i="165" s="30174" l="170">
+<M n="2" v="0.23852"/><M n="3" v="0.23852"/>
+</S>
+<Pr i="166" s="30182" l="167" lm="2" f="19861" n="30182" a="1">
+<M n="2" v="0.124466"/><M n="3" v="0.124466"/>
+<S i="167" s="30183" l="167">
+<M n="2" v="0.124466"/><M n="3" v="0.124466"/>
+</S>
+</Pr>
+<Pr i="168" s="20052" l="168" lm="2" f="19861" n="20052" a="1">
+<M n="2" v="0.2973"/>
+<Pr i="169" s="31180" l="122" lm="2" f="19861" n="31180" a="1">
+<M n="2" v="0.2973"/>
+<Pr i="170" s="20052" l="122" lm="2" f="19861" n="20052" a="1">
+<M n="2" v="0.059713"/>
+<Pr i="171" s="30194" l="1064" lm="2" f="4240" n="30194" a="1">
+<M n="2" v="0.059713"/><M n="3" v="0.059713"/>
+<S i="172" s="30195" l="1064">
+<M n="2" v="0.059713"/><M n="3" v="0.059713"/>
+</S>
+</Pr>
+</Pr>
+<Pr i="173" s="20052" l="123" lm="2" f="19861" n="20052" a="1">
+<M n="2" v="0.237587"/>
+<Pr i="174" s="30197" l="122" lm="2" f="19861" n="30197" a="1">
+<M n="2" v="0.237587"/><M n="3" v="0.237587"/>
+<S i="175" s="30198" l="122">
+<M n="2" v="0.225691"/><M n="3" v="0.225691"/>
+</S>
+<S i="176" s="30199" l="123">
+<M n="2" v="0.011896"/><M n="3" v="0.011896"/>
+</S>
+</Pr>
+</Pr>
+</Pr>
+</Pr>
+<Pr i="177" s="20052" l="174" lm="2" f="19861" n="20052" a="1">
+<M n="2" v="0.017921"/>
+<Pr i="178" s="30201" l="134" lm="2" f="19861" n="30201" a="1">
+<M n="2" v="0.017921"/>
+<Pr i="179" s="20052" l="134" lm="2" f="19861" n="20052" a="1">
+<M n="2" v="0.011961"/>
+<Pr i="180" s="30194" l="1064" lm="2" f="4240" n="30194" a="1">
+<M n="2" v="0.011961"/><M n="3" v="0.011961"/>
+<S i="181" s="30205" l="1064">
+<M n="2" v="0.011961"/><M n="3" v="0.011961"/>
+</S>
+</Pr>
+</Pr>
+<Pr i="182" s="20052" l="135" lm="2" f="19861" n="20052" a="1">
+<M n="2" v="0.00596"/>
+<Pr i="183" s="30207" l="134" lm="2" f="19861" n="30207" a="1">
+<M n="2" v="0.00596"/><M n="3" v="0.00596"/>
+<S i="184" s="30208" l="134">
+<M n="2" v="0.00596"/><M n="3" v="0.00596"/>
+</S>
+</Pr>
+</Pr>
+</Pr>
+</Pr>
+</Pr>
+</Pr>
+</Pr>
+</Pr>
+<Pr i="185" s="30490" l="312" lm="2" f="27482" n="30490" a="1">
+<M n="2" v="0.02384"/>
+<Pr i="186" s="31060" l="599" lm="2" f="31060" n="31060" a="1">
+<M n="2" v="0.02384"/>
+<Pr i="187" s="31061" l="599" lm="2" f="31060" n="31061" a="1">
+<M n="2" v="0.02384"/>
+<Pr i="188" s="31062" l="389" lm="2" f="31060" n="31062" a="1">
+<M n="2" v="0.02384"/>
+<Pr i="189" s="31061" l="389" lm="2" f="31060" n="31061" a="1">
+<M n="2" v="0.02384"/>
+<Pr i="190" s="31064" l="189" lm="2" f="31060" n="31064" a="1">
+<M n="2" v="0.02384"/>
+<Pr i="191" s="31061" l="189" lm="2" f="31060" n="31061" a="1">
+<M n="2" v="0.02384"/>
+<Pr i="192" s="31066" l="187" lm="2" f="31066" n="31066" a="1">
+<M n="2" v="0.02384"/><M n="3" v="0.02384"/>
+<S i="193" s="30321" l="187">
+<M n="2" v="0.02384"/><M n="3" v="0.02384"/>
+</S>
+</Pr>
+</Pr>
+</Pr>
+</Pr>
+</Pr>
+</Pr>
+</Pr>
+</Pr>
+<Pr i="194" s="30490" l="313" lm="2" f="27482" n="30490" a="1">
+<M n="2" v="0.20855"/>
+<Pr i="195" s="31060" l="599" lm="2" f="31060" n="31060" a="1">
+<M n="2" v="0.20855"/>
+<Pr i="196" s="31061" l="599" lm="2" f="31060" n="31061" a="1">
+<M n="2" v="0.20855"/>
+<Pr i="197" s="31062" l="389" lm="2" f="31060" n="31062" a="1">
+<M n="2" v="0.20855"/>
+<Pr i="198" s="31061" l="389" lm="2" f="31060" n="31061" a="1">
+<M n="2" v="0.20855"/>
+<Pr i="199" s="31064" l="189" lm="2" f="31060" n="31064" a="1">
+<M n="2" v="0.20855"/><M n="3" v="0.20855"/>
+<S i="200" s="30328" l="189">
+<M n="2" v="0.20855"/><M n="3" v="0.20855"/>
+</S>
+</Pr>
+</Pr>
+</Pr>
+</Pr>
+</Pr>
+</Pr>
+</PF>
+</C>
+<S i="201" s="31116" l="284">
+<M n="2" v="0.083469"/><M n="3" v="0.083469"/>
+</S>
+<Pr i="202" s="31043" l="284" lm="2" f="31042" n="31043" a="1">
+<M n="2" v="0.261566"/>
+<Pr i="203" s="31118" l="244" lm="2" f="31042" n="31118" a="1">
+<M n="2" v="0.261566"/>
+<Pr i="204" s="31043" l="244" lm="2" f="31042" n="31043" a="1">
+<M n="2" v="0.261566"/>
+<Pr i="205" s="31120" l="162" lm="2" f="31042" n="31120" a="1">
+<M n="2" v="0.261566"/>
+<Pr i="206" s="31043" l="162" lm="2" f="31042" n="31043" a="1">
+<M n="2" v="0.261566"/>
+<Pr i="207" s="31125" l="21" lm="2" f="4610" n="31125" a="1">
+<M n="2" v="0.261566"/><M n="3" v="0.094541"/>
+<C i="208" s="31127" l="21" v="0x416ecc">
+<M n="2" v="0.167025"/>
+<PF i="209" s="22690" l="58" lm="2" f="4610" n="22690">
+<M n="2" v="0.167025"/><M n="3" v="0.077607"/>
+<S i="210" s="22692" l="59">
+<M n="2" v="0.077607"/><M n="3" v="0.077607"/>
+</S>
+<Pr i="211" s="4617" l="58" lm="2" f="4610" n="4617" a="1">
+<M n="2" v="0.089418"/>
+<Pr i="212" s="22694" l="1046" lm="2" f="4240" n="22694" a="1">
+<M n="2" v="0.089418"/><M n="3" v="0.089418"/>
+<S i="213" s="22695" l="1046">
+<M n="2" v="0.089418"/><M n="3" v="0.089418"/>
+</S>
+</Pr>
+</Pr>
+</PF>
+</C>
+<S i="214" s="31127" l="21">
+<M n="2" v="0.094541"/><M n="3" v="0.094541"/>
+</S>
+</Pr>
+</Pr>
+</Pr>
+</Pr>
+</Pr>
+</Pr>
+<Pr i="215" s="31043" l="284" lm="2" f="31042" n="31043" a="1">
+<M n="2" v="0.316033"/>
+<Pr i="216" s="31129" l="244" lm="2" f="31042" n="31129" a="1">
+<M n="2" v="0.316033"/>
+<Pr i="217" s="31043" l="244" lm="2" f="31042" n="31043" a="1">
+<M n="2" v="0.316033"/>
+<Pr i="218" s="31131" l="162" lm="2" f="31042" n="31131" a="1">
+<M n="2" v="0.316033"/>
+<Pr i="219" s="31043" l="162" lm="2" f="31042" n="31043" a="1">
+<M n="2" v="0.071611"/>
+<Pr i="220" s="31133" l="84" lm="2" f="31133" n="31133" a="1">
+<M n="2" v="0.071611"/><M n="3" v="0.071611"/>
+<S i="221" s="31134" l="84">
+<M n="2" v="0.071611"/><M n="3" v="0.071611"/>
+</S>
+</Pr>
+</Pr>
+<Pr i="222" s="31043" l="162" lm="2" f="31042" n="31043" a="1">
+<M n="2" v="0.244422"/>
+<Pr i="223" s="31125" l="21" lm="2" f="4610" n="31125" a="1">
+<M n="2" v="0.244422"/><M n="3" v="0.131174"/>
+<S i="224" s="31137" l="21">
+<M n="2" v="0.047715"/><M n="3" v="0.047715"/>
+</S>
+<C i="225" s="31138" l="21" v="0x416edf">
+<M n="2" v="0.113248"/>
+<PF i="226" s="22706" l="96" lm="2" f="4610" n="22706">
+<M n="2" v="0.113248"/><M n="3" v="0.113248"/>
+<S i="227" s="22707" l="96">
+<M n="2" v="0.113248"/><M n="3" v="0.113248"/>
+</S>
+</PF>
+</C>
+<S i="228" s="31138" l="21">
+<M n="2" v="0.083459"/><M n="3" v="0.083459"/>
+</S>
+</Pr>
+</Pr>
+</Pr>
+</Pr>
+</Pr>
+</Pr>
+</Pr>
+</Pr>
+</Pr>
+</Pr>
+</Pr>
+</Pr>
+</Pr>
+</Pr>
+</Pr>
+</Pr>
+</Pr>
+</Pr>
+</Pr>
+</Pr>
+</Pr>
+</Pr>
+</L>
+</Pr>
+</Pr>
+<Pr i="229" s="31019" l="106" lm="2" f="31005" n="31019" a="1">
+<M n="2" v="0.005967"/>
+<Pr i="230" s="31145" l="131" lm="2" f="31145" n="31145" a="1">
+<M n="2" v="0.005967"/><M n="3" v="0.005967"/>
+<S i="231" s="31146" l="131">
+<M n="2" v="0.005967"/><M n="3" v="0.005967"/>
+</S>
+</Pr>
+</Pr>
+</Pr>
+</Pr>
+<Pr i="232" s="31002" l="64" lm="2" f="31001" n="31002" a="1">
+<M n="2" v="0.071651"/>
+<Pr i="233" s="31148" l="61" lm="2" f="31001" n="31148" a="1">
+<M n="2" v="0.071651"/>
+<Pr i="234" s="31002" l="61" lm="2" f="31001" n="31002" a="1">
+<M n="2" v="0.071651"/>
+<Pr i="235" s="31150" l="305" lm="2" f="31042" n="31150" a="1">
+<M n="2" v="0.071651"/>
+<Pr i="236" s="31043" l="305" lm="2" f="31042" n="31043" a="1">
+<M n="2" v="0.071651"/>
+<Pr i="237" s="31152" l="284" lm="2" f="31042" n="31152" a="1">
+<M n="2" v="0.071651"/>
+<Pr i="238" s="31043" l="284" lm="2" f="31042" n="31043" a="1">
+<M n="2" v="0.029838"/>
+<Pr i="239" s="31154" l="244" lm="2" f="31042" n="31154" a="1">
+<M n="2" v="0.029838"/>
+<Pr i="240" s="31043" l="244" lm="2" f="31042" n="31043" a="1">
+<M n="2" v="0.029838"/>
+<Pr i="241" s="31131" l="162" lm="2" f="31042" n="31131" a="1">
+<M n="2" v="0.029838"/>
+<Pr i="242" s="31043" l="162" lm="2" f="31042" n="31043" a="1">
+<M n="2" v="0.029838"/>
+<Pr i="243" s="31125" l="21" lm="2" f="4610" n="31125" a="1">
+<M n="2" v="0.029838"/><M n="3" v="0.011931"/>
+<S i="244" s="31162" l="21">
+<M n="2" v="0.00595"/><M n="3" v="0.00595"/>
+</S>
+<C i="245" s="31163" l="21" v="0x416f0a">
+<M n="2" v="0.017907"/>
+<PF i="246" s="22706" l="96" lm="2" f="4610" n="22706">
+<M n="2" v="0.017907"/><M n="3" v="0.017907"/>
+<S i="247" s="22707" l="96">
+<M n="2" v="0.017907"/><M n="3" v="0.017907"/>
+</S>
+</PF>
+</C>
+<S i="248" s="31163" l="21">
+<M n="2" v="0.005981"/><M n="3" v="0.005981"/>
+</S>
+</Pr>
+</Pr>
+</Pr>
+</Pr>
+</Pr>
+</Pr>
+<Pr i="249" s="31043" l="284" lm="2" f="31042" n="31043" a="1">
+<M n="2" v="0.041813"/>
+<Pr i="250" s="31165" l="318" lm="2" f="27482" n="31165" a="1">
+<M n="2" v="0.041813"/><M n="3" v="0.029851"/>
+<S i="251" s="31166" l="318">
+<M n="2" v="0.011943"/><M n="3" v="0.011943"/>
+</S>
+<Pr i="252" s="31167" l="317" lm="2" f="27482" n="31167" a="1">
+<M n="2" v="0.017908"/><M n="3" v="0.017908"/>
+<S i="253" s="31168" l="317">
+<M n="2" v="0.017908"/><M n="3" v="0.017908"/>
+</S>
+</Pr>
+<Pr i="254" s="30490" l="318" lm="2" f="27482" n="30490" a="1">
+<M n="2" v="0.011962"/>
+<Pr i="255" s="31170" l="49" lm="2" f="23093" n="31170" a="1">
+<M n="2" v="0.011962"/>
+<Pr i="256" s="24532" l="49" lm="2" f="23093" n="24532" a="1">
+<M n="2" v="0.011962"/>
+<Pr i="257" s="31172" l="168" lm="2" f="19861" n="31172" a="1">
+<M n="2" v="0.011962"/><M n="3" v="0.005981"/>
+<S i="258" s="31176" l="173">
+<M n="2" v="0.005981"/><M n="3" v="0.005981"/>
+</S>
+<Pr i="259" s="20052" l="168" lm="2" f="19861" n="20052" a="1">
+<M n="2" v="0.005981"/>
+<Pr i="260" s="31180" l="122" lm="2" f="19861" n="31180" a="1">
+<M n="2" v="0.005981"/>
+<Pr i="261" s="20052" l="122" lm="2" f="19861" n="20052" a="1">
+<M n="2" v="0.005981"/>
+<Pr i="262" s="31187" l="1064" lm="2" f="4240" n="31187" a="1">
+<M n="2" v="0.005981"/><M n="3" v="0.005981"/>
+<S i="263" s="31188" l="1064">
+<M n="2" v="0.005981"/><M n="3" v="0.005981"/>
+</S>
+</Pr>
+</Pr>
+</Pr>
+</Pr>
+</Pr>
+</Pr>
+</Pr>
+</Pr>
+</Pr>
+</Pr>
+</Pr>
+</Pr>
+</Pr>
+</Pr>
+</Pr>
+</Pr>
+</Pr>
+</Pr>
+</Pr>
+</Pr>
+</Pr>
+</Pr>
+</Pr>
+</Pr>
+</Pr>
+</Pr>
+</L>
+</Pr>
+</Pr>
+</Pr>
+</Pr>
+</Pr>
+</Pr>
+</Pr>
+</Pr>
+</Pr>
+</Pr>
+</Pr>
+</Pr>
+</Pr>
+</Pr>
+</Pr>
+</Pr>
+</L>
+</PF>
+</C>
+</PF>
+</C>
+</PF>
+</SecCallPathProfileData>
+</SecCallPathProfile>
+</HPCToolkitExperiment>
