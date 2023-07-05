@@ -162,7 +162,7 @@ template <template <typename, idx_t> typename Format>
 void GauSei_dispatch(int dimSize, double nonzeroDensity, 
                    int runDense, int runSpecialized, int runSparseRAJA) {
   int numReps = 1000;
-  auto refData = make_random_sparse_view<double,2,Format>(dimSize, nonzeroDensity);
+  auto refData = make_random_sparse_view<double,2,Format>(dimSize, nonzeroDensity, true);
   DenseView1 b(new double[dimSize], dimSize);
   for(int i = 0; i < dimSize; i++) {
     b(i) = std::rand(); 
@@ -228,43 +228,89 @@ void GauSei_dispatch(int dimSize, double nonzeroDensity,
   } //GauSei Dense
 
   if (runSpecialized) {
+
     size_t numNonZeros = refData.size();
     DenseView1 x(new double[dimSize], dimSize);
+    std::memset(x.get_data(), 0, dimSize);
+
+    auto seg = RangeSegment(0,numNonZeros);
+
+    if constexpr (std::is_same<Format<double,2>,CSR<double,2>>::value) {
+      DenseView1 A_rowptr(new double[dimSize+1], dimSize+1);
+      DenseView1 A_cols(new double[numNonZeros], numNonZeros);
+      DenseView1 A_vals(new double[numNonZeros], numNonZeros);
+      for(int i = 0; i < numNonZeros; i++) {
+        A_cols(i) = refData.dim(1)[i];
+        A_vals(i) = refData.val(i);
+      }
+      for(int i = 0; i < dimSize+1; i++) {
+        A_rowptr(i) = refData.impl.rowptr[i];
+      }
+      double temp = 0.0;
+      idx_t currRow = 0;
+
+      auto lam = [&](idx_t nz) {
+        if (nz >= A_rowptr(currRow+1)) {
+          double prev_diagonal = refData(currRow,currRow); //hack
+          x(currRow) = (b(currRow) - temp) / prev_diagonal;
+
+          temp = 0.0;
+          currRow += 1;
+        }
+
+        idx_t j = A_cols(nz);
+        if (j != currRow) {
+         temp += A_vals(nz) * x(j);
+        }
+      };
+      auto knl = make_forall<seq_exec>(seg, lam);
+      auto start = now();
+      for(int i = 0; i < numReps; i++) {
+        temp = 0.0;
+        currRow = 0;
+        knl();
+        auto prev_diagonal = refData(currRow, currRow);
+        x(currRow) = (b(currRow) - temp) / prev_diagonal;
+      }
+      auto stop = now();
+      auto elapsed = elapsed_time(start, stop);
+      auto hitrate = refData.get_hit_rate();
+      write_point("GauSei","Specialized", dimSize, nonzeroDensity, elapsed, hitrate, Format<double, 2>::name);
+
+
+    } else {
     DenseView1 A_rows(new double[numNonZeros], numNonZeros);
     DenseView1 A_cols(new double[numNonZeros], numNonZeros);
     DenseView1 A_vals(new double[numNonZeros], numNonZeros);
 
     //set and copy data
-    std::memset(x.get_data(), 0, dimSize);
     for(int i = 0; i < numNonZeros; i++) {
       A_rows(i) = refData.dim(0)[i];
       A_cols(i) = refData.dim(1)[i];
       A_vals(i) = refData.val(i);
     }
 
-    auto seg = RangeSegment(0,numNonZeros);
 
     int prev_i = 0;
     double temp = 0.0;
     auto lam = [&](auto idx) {
-      int i = A_rows(idx);
-      int j = A_cols(idx);
-      double v = A_vals(idx);
+        int i = A_rows(idx);
+        int j = A_cols(idx);
+        double v = A_vals(idx);
 
-      if (i != prev_i) {
-        double prev_diagonal = refData(prev_i, prev_i);
-        x(prev_i) = (b(prev_i) - temp) / prev_diagonal;
-        temp = 0.0;
-        prev_i = i;
-      }
-      if (j != i) {
-        temp += v * x(j);
-      } 
-    };
+        if (i != prev_i) {
+          double prev_diagonal = refData(prev_i, prev_i);
+          x(prev_i) = (b(prev_i) - temp) / prev_diagonal;
+          temp = 0.0;
+          prev_i = i;
+        }
+        if (j != i) {
+          temp += v * x(j);
+        }
+     };
 
     auto knl = make_forall<loop_exec>(seg, lam);
-
-    auto start = now();
+        auto start = now();
     for(int i = 0; i < numReps; i++) {
       knl();
       auto prev_diagonal = refData(prev_i, prev_i);
@@ -279,7 +325,7 @@ void GauSei_dispatch(int dimSize, double nonzeroDensity,
     delete[] A_cols.get_data();
     delete[] A_vals.get_data();
     delete[] x.get_data();
-
+  }
   } //GauSei Specialized
 
   if (runSparseRAJA) {
